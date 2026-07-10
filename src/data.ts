@@ -13,7 +13,8 @@ export const personalInfo = {
     { name: "English", level: "Native" },
     { name: "Swahili", level: "Native" },
     { name: "Japanese", level: "Intermediate (B1)" },
-    { name: "French", level: "Basic" }
+    { name: "French", level: "Basic" },
+    // { name: "German", level: "Elementary" }
   ],
   bio: "Committed to developing computational models that bridge artificial intelligence, network science, and cognitive neuroscience to understand complex brain functions, multi-agent social interactions, and enhance human-computer interaction.",
   researchInterests: [
@@ -294,7 +295,8 @@ export const educations: Education[] = [
     period: "",
     bullets: [
       "Double focus on Computer Science and Business Administration.",
-      
+      "Developed foundational knowledge in algorithms, data structures, and database management.",
+      "Completed rigorous coursework in business strategy, economics, and corporate IT alignment."
     ],
     thesis: {
       title: "Developing an intrusion detection system using Neural Networks for automated network threat detection",
@@ -308,13 +310,13 @@ export const educations: Education[] = [
     location: "Kuala Lumpur, Malaysia",
     period: "",
     bullets: [
-      "Deep specialization in Advanced Machine Learning, Neuro-Symbolic AI, and Reinforcement Learning.",
+      "Specialized deeply in Advanced Machine Learning, Neuro-Symbolic AI, and Reinforcement Learning.",
       "Collaborated with leading research professors on EEG and cognitive modeling.",
-      "Authored and compilled  multiple research manuscripts for publication."
+      "Authored and compiled multiple research manuscripts for publication."
     ],
     thesis: {
       title: "Exploring computational approaches to understanding collaborative behaviors between intelligent agents",
-      description: "Developing models that investigate how social hierarchies, trust, and communication emerge in multi-agent reinforcement learning (MARL) structures."
+      description: "Developed models that investigated how social hierarchies, trust, and communication emerge in multi-agent reinforcement learning (MARL) structures."
     }
   },
   {
