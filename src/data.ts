@@ -246,7 +246,7 @@ export const experiences: Experience[] = [
     role: "People and Culture Analyst",
     company: "The ResourceEdge",
     location: "Nairobi, Kenya",
-    period: "Jan 2023 - Present",
+    period: "Jan 2023 - Sep 2026",
     bullets: [
       "Assisted in Strategic Human Resource Management (SHRM) initiatives, applying people analytics models to team dynamics.",
       "Conducted systematic, data-driven evaluations of job candidates utilizing resume screening algorithms and psychometric metrics.",
@@ -254,6 +254,19 @@ export const experiences: Experience[] = [
       "Supported organizational culture assessments and complex workforce planning initiatives through statistical modeling."
     ],
     type: "Professional"
+  },
+  {
+    id: "exp-ceu-researcher",
+    role: "Doctoral Researcher",
+    company: "Central European University",
+    location: "Vienna, Austria",
+    period: "Sep 2026 - Present",
+    bullets: [
+      "Conducting advanced research at the intersection of network science, artificial intelligence, and complex systems.",
+      "Investigating the structural properties and dynamics of complex networks within multi-agent reinforcement learning (MARL) environments.",
+      "Developing computational models to analyze cognitive architectures and complex adaptive social behaviors."
+    ],
+    type: "Research"
   },
   {
     id: "exp-psc-support",

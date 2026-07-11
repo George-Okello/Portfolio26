@@ -50,7 +50,8 @@ export default function AcademicTimeline({ theme }: AcademicTimelineProps) {
     { id: "exp-cultivate-vol", type: "exp", category: "service", year: "2024" },
     { id: "award-innovate-africa", type: "award", category: "research", year: "2024" },
     { id: "exp-apu-ra", type: "exp", category: "research", year: "2025" },
-    { id: "exp-re-pca", type: "exp", category: "industry", isCurrent: true, year: "Current" },
+    { id: "exp-re-pca", type: "exp", category: "industry", year: "2026" },
+    { id: "exp-ceu-researcher", type: "exp", category: "research", isCurrent: true, year: "Current" },
   ];
 
   const groupedItems = useMemo(() => {
