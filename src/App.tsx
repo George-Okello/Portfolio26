@@ -120,11 +120,13 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("hero");
   
   // Audio refs
   const audioCtxRef = React.useRef<AudioContext | null>(null);
   const noiseNodeRef = React.useRef<AudioBufferSourceNode | null>(null);
   const gainNodeRef = React.useRef<GainNode | null>(null);
+  const filterNodeRef = React.useRef<BiquadFilterNode | null>(null);
 
   const toggleAudio = () => {
     if (isAudioPlaying) {
@@ -150,7 +152,7 @@ export default function App() {
       const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
       const data = buffer.getChannelData(0);
       
-      // Generate brown noise
+      // Generate noise
       let lastOut = 0;
       for (let i = 0; i < bufferSize; i++) {
         const white = Math.random() * 2 - 1;
@@ -163,19 +165,81 @@ export default function App() {
       noise.buffer = buffer;
       noise.loop = true;
 
-      const gain = ctx.createGain();
-      gain.gain.value = 0.05; // Soft volume
+      const filter = ctx.createBiquadFilter();
+      filter.type = "lowpass";
+      filter.frequency.value = 400; // default value
 
-      noise.connect(gain);
+      const gain = ctx.createGain();
+      gain.gain.value = 0; // start at 0, useEffect will ramp it
+
+      noise.connect(filter);
+      filter.connect(gain);
       gain.connect(ctx.destination);
 
       noise.start();
       noiseNodeRef.current = noise;
+      filterNodeRef.current = filter;
       gainNodeRef.current = gain;
 
       setIsAudioPlaying(true);
     }
   };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    document.querySelectorAll("section[id]").forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!audioCtxRef.current || !isAudioPlaying) return;
+    
+    const filter = filterNodeRef.current;
+    const gain = gainNodeRef.current;
+    if (!filter || !gain) return;
+
+    const now = audioCtxRef.current.currentTime;
+    
+    // Smooth transition
+    gain.gain.cancelScheduledValues(now);
+    filter.frequency.cancelScheduledValues(now);
+    
+    switch (activeSection) {
+      case "sandbox":
+        // Lab: bright noise
+        filter.type = "lowpass";
+        filter.frequency.linearRampToValueAtTime(6000, now + 1);
+        gain.gain.linearRampToValueAtTime(0.04, now + 1);
+        break;
+      case "portfolio":
+        // Portfolio: subtle deep noise
+        filter.type = "lowpass";
+        filter.frequency.linearRampToValueAtTime(300, now + 1);
+        gain.gain.linearRampToValueAtTime(0.08, now + 1);
+        break;
+      case "about":
+        // About: mid-range noise
+        filter.type = "bandpass";
+        filter.frequency.linearRampToValueAtTime(800, now + 1);
+        gain.gain.linearRampToValueAtTime(0.05, now + 1);
+        break;
+      case "hero":
+      case "chronicle":
+      case "creative":
+      case "contact":
+      default:
+        // Quiet
+        gain.gain.linearRampToValueAtTime(0, now + 1);
+        break;
+    }
+  }, [activeSection, isAudioPlaying]);
 
   useEffect(() => {
     const handleScroll = () => {
