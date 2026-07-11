@@ -36,13 +36,12 @@ import { personalInfo } from "./data";
 import AmbientBackground from "./components/AmbientBackground";
 import ScrollParticles from "./components/ScrollParticles";
 import NeuralCanvas from "./components/NeuralCanvas";
-import { lazy, Suspense } from "react";
-const ResearchSandbox = lazy(() => import("./components/ResearchSandbox"));
-const PublicationsList = lazy(() => import("./components/PublicationsList"));
-const AcademicTimeline = lazy(() => import("./components/AcademicTimeline"));
-const EducationSpiral = lazy(() => import("./components/EducationSpiral"));
-const GenerativeArt = lazy(() => import("./components/GenerativeArt"));
-const TechnicalSkills = lazy(() => import("./components/TechnicalSkills").then(m => ({ default: m.TechnicalSkills })));
+import ResearchSandbox from "./components/ResearchSandbox";
+import PublicationsList from "./components/PublicationsList";
+import AcademicTimeline from "./components/AcademicTimeline";
+import EducationSpiral from "./components/EducationSpiral";
+import GenerativeArt from "./components/GenerativeArt";
+import { TechnicalSkills } from "./components/TechnicalSkills";
 
 
 
@@ -706,9 +705,7 @@ export default function App() {
             </h2>
           </div>
 
-          <Suspense fallback={<div className="w-full h-32 flex items-center justify-center opacity-50"><div className="animate-pulse">Loading PublicationsList...</div></div>}>
-            <PublicationsList theme={theme} />
-          </Suspense>
+          <PublicationsList theme={theme} />
         </div>
       </motion.section>
 
@@ -722,9 +719,7 @@ export default function App() {
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <Suspense fallback={<div className="w-full h-32 flex items-center justify-center opacity-50"><div className="animate-pulse">Loading EducationSpiral...</div></div>}>
-            <EducationSpiral theme={theme} />
-          </Suspense>
+        <EducationSpiral theme={theme} />
       </motion.section>
 
       <SectionDivider isDark={isDark} />
@@ -746,18 +741,14 @@ export default function App() {
             </h2>
           </div>
 
-          <Suspense fallback={<div className="w-full h-32 flex items-center justify-center opacity-50"><div className="animate-pulse">Loading AcademicTimeline...</div></div>}>
-            <AcademicTimeline theme={theme} />
-          </Suspense>
+          <AcademicTimeline theme={theme} />
         </div>
       </motion.section>
 
       <SectionDivider isDark={isDark} />
 
       {/* 7. TECHNICAL SKILLS SECTION */}
-      <Suspense fallback={<div className="w-full h-32 flex items-center justify-center opacity-50"><div className="animate-pulse">Loading TechnicalSkills...</div></div>}>
-            <TechnicalSkills isDark={isDark} />
-          </Suspense>
+      <TechnicalSkills isDark={isDark} />
 
       <SectionDivider isDark={isDark} />
 
@@ -781,9 +772,7 @@ export default function App() {
             </p>
           </div>
 
-          <Suspense fallback={<div className="w-full h-32 flex items-center justify-center opacity-50"><div className="animate-pulse">Loading GenerativeArt...</div></div>}>
-            <GenerativeArt theme={theme} />
-          </Suspense>
+          <GenerativeArt theme={theme} />
         </div>
       </motion.section>
 
