@@ -8,7 +8,10 @@ export default function MagneticCursor() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(pointer: coarse)").matches
+    ) {
       setIsTouchDevice(true);
       return;
     }

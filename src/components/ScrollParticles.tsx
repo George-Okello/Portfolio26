@@ -9,7 +9,15 @@ export default function ScrollParticles({ isDark }: { isDark: boolean }) {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let particles: { x: number; y: number; vx: number; vy: number; life: number; maxLife: number; size: number }[] = [];
+    let particles: {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      life: number;
+      maxLife: number;
+      size: number;
+    }[] = [];
     let lastScrollY = window.scrollY;
     let scrollVelocity = 0;
 
@@ -24,7 +32,7 @@ export default function ScrollParticles({ isDark }: { isDark: boolean }) {
       const currentScrollY = window.scrollY;
       const delta = currentScrollY - lastScrollY;
       scrollVelocity = delta;
-      
+
       // Spawn particles proportional to scroll speed
       const count = Math.min(Math.abs(delta) / 4, 15);
       for (let i = 0; i < count; i++) {
@@ -38,7 +46,7 @@ export default function ScrollParticles({ isDark }: { isDark: boolean }) {
           size: Math.random() * 2 + 1,
         });
       }
-      
+
       lastScrollY = currentScrollY;
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -49,7 +57,7 @@ export default function ScrollParticles({ isDark }: { isDark: boolean }) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const isDarkTheme = document.documentElement.classList.contains("dark");
       // Monochromatic palette
-      const baseColor = isDarkTheme ? "255, 255, 255" : "15, 23, 42"; 
+      const baseColor = isDarkTheme ? "255, 255, 255" : "15, 23, 42";
 
       // Ambient slow-spawning particles
       if (Math.random() < 0.2) {
@@ -64,18 +72,19 @@ export default function ScrollParticles({ isDark }: { isDark: boolean }) {
         });
       }
 
-      particles.forEach(p => {
+      particles.forEach((p) => {
         p.x += p.vx;
         p.y += p.vy;
         p.life++;
-        
+
         // Add current scroll velocity to drift
         p.y -= scrollVelocity * 0.08;
         // Slight organic float
         p.x += Math.sin(p.life / 20) * 0.2;
-        
+
         const progress = p.life / p.maxLife;
-        const opacity = Math.sin(progress * Math.PI) * (isDarkTheme ? 0.3 : 0.2); // Smooth fade in and out
+        const opacity =
+          Math.sin(progress * Math.PI) * (isDarkTheme ? 0.3 : 0.2); // Smooth fade in and out
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
@@ -86,8 +95,10 @@ export default function ScrollParticles({ isDark }: { isDark: boolean }) {
       scrollVelocity *= 0.92; // Dampen velocity
 
       // Cleanup dead particles
-      particles = particles.filter(p => p.life < p.maxLife && p.y > -100 && p.y < canvas.height + 100);
-      
+      particles = particles.filter(
+        (p) => p.life < p.maxLife && p.y > -100 && p.y < canvas.height + 100,
+      );
+
       animationFrameId = requestAnimationFrame(render);
     };
 

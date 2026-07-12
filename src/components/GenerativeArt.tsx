@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Sliders, RotateCcw, HelpCircle, Activity } from "lucide-react";
+import { RotateCcw, Activity } from "lucide-react";
 
 interface Boid {
   x: number;
@@ -13,19 +13,24 @@ interface GenerativeArtProps {
 }
 
 export default function GenerativeArt({ theme }: GenerativeArtProps) {
+  const isDark = theme === "dark";
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [dimensions, setDimensions] = useState({ width: 600, height: 320 });
-  
+
   // Swarm parameters
   const [cohesion, setCohesion] = useState(0.015);
   const [alignment, setAlignment] = useState(0.04);
   const [separation, setSeparation] = useState(0.05);
-  const [swarmSize, setSwarmSize] = useState(80);
-  
+  const [swarmSize] = useState(80);
+
   const boidsRef = useRef<Boid[]>([]);
   const requestRef = useRef<number | null>(null);
-  const mouseRef = useRef<{ x: number; y: number; active: boolean }>({ x: -1000, y: -1000, active: false });
+  const mouseRef = useRef<{ x: number; y: number; active: boolean }>({
+    x: -1000,
+    y: -1000,
+    active: false,
+  });
 
   // Handle Resize
   useEffect(() => {
@@ -51,7 +56,7 @@ export default function GenerativeArt({ theme }: GenerativeArtProps) {
         x: Math.random() * dimensions.width,
         y: Math.random() * dimensions.height,
         vx: (Math.random() - 0.5) * 4,
-        vy: (Math.random() - 0.5) * 4
+        vy: (Math.random() - 0.5) * 4,
       });
     }
     boidsRef.current = boids;
@@ -64,8 +69,6 @@ export default function GenerativeArt({ theme }: GenerativeArtProps) {
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-
-    const isDark = theme === "dark";
 
     const updateBoids = () => {
       const boids = boidsRef.current;
@@ -170,21 +173,26 @@ export default function GenerativeArt({ theme }: GenerativeArtProps) {
     const drawBoids = () => {
       ctx.clearRect(0, 0, dimensions.width, dimensions.height);
       const boids = boidsRef.current;
-      const isDark = theme === "dark";
 
       // Draw mouse repeller range if active
       const mouse = mouseRef.current;
       if (mouse.active) {
         ctx.beginPath();
         ctx.arc(mouse.x, mouse.y, 80, 0, Math.PI * 2);
-        ctx.strokeStyle = isDark ? "rgba(245, 158, 11, 0.08)" : "rgba(249, 115, 22, 0.06)";
-        ctx.fillStyle = isDark ? "rgba(245, 158, 11, 0.02)" : "rgba(249, 115, 22, 0.01)";
+        ctx.strokeStyle = isDark
+          ? "rgba(245, 158, 11, 0.08)"
+          : "rgba(249, 115, 22, 0.06)";
+        ctx.fillStyle = isDark
+          ? "rgba(245, 158, 11, 0.02)"
+          : "rgba(249, 115, 22, 0.01)";
         ctx.fill();
         ctx.stroke();
 
         ctx.beginPath();
         ctx.arc(mouse.x, mouse.y, 4, 0, Math.PI * 2);
-        ctx.fillStyle = isDark ? "rgba(245, 158, 11, 0.6)" : "rgba(249, 115, 22, 0.6)";
+        ctx.fillStyle = isDark
+          ? "rgba(245, 158, 11, 0.6)"
+          : "rgba(249, 115, 22, 0.6)";
         ctx.fill();
       }
 
@@ -205,15 +213,17 @@ export default function GenerativeArt({ theme }: GenerativeArtProps) {
         ctx.closePath();
 
         if (isDark) {
-          ctx.fillStyle = i === 0 
-            ? "rgba(249, 115, 22, 1)" // Swarm leader highlighted
-            : `rgba(255, 255, 255, ${0.45 + (i % 5) * 0.1})`;
+          ctx.fillStyle =
+            i === 0
+              ? "rgba(249, 115, 22, 1)" // Swarm leader highlighted
+              : `rgba(255, 255, 255, ${0.45 + (i % 5) * 0.1})`;
           ctx.shadowColor = "rgba(249, 115, 22, 0.2)";
           ctx.shadowBlur = i === 0 ? 6 : 0;
         } else {
-          ctx.fillStyle = i === 0 
-            ? "rgba(249, 115, 22, 1)" 
-            : `rgba(15, 23, 42, ${0.5 + (i % 5) * 0.15})`;
+          ctx.fillStyle =
+            i === 0
+              ? "rgba(249, 115, 22, 1)"
+              : `rgba(15, 23, 42, ${0.5 + (i % 5) * 0.15})`;
           ctx.shadowBlur = 0;
         }
 
@@ -263,11 +273,14 @@ export default function GenerativeArt({ theme }: GenerativeArtProps) {
   };
 
   return (
-    <div className={`p-5 rounded-2xl border ${
-      theme === "dark" 
-        ? "bg-slate-900/40 border-slate-800" 
-        : "bg-white border-slate-200"
-    }`} id="computational-generative-art">
+    <div
+      className={`p-5 rounded-2xl border ${
+        theme === "dark"
+          ? "bg-slate-900/40 border-slate-800"
+          : "bg-white border-slate-200"
+      }`}
+      id="computational-generative-art"
+    >
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 pb-2 border-b border-dashed border-slate-800/10 gap-2">
         <div>
           <h4 className="text-sm font-mono font-medium flex items-center gap-2">
@@ -275,7 +288,8 @@ export default function GenerativeArt({ theme }: GenerativeArtProps) {
             Swarm Intelligence Flocking Simulation
           </h4>
           <p className="text-[10px] font-mono text-slate-400 mt-0.5">
-            Demonstrating Emergent Collective Behavior (Separation, Alignment, Cohesion)
+            Demonstrating Emergent Collective Behavior (Separation, Alignment,
+            Cohesion)
           </p>
         </div>
         <button
@@ -290,10 +304,12 @@ export default function GenerativeArt({ theme }: GenerativeArtProps) {
 
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
         {/* Canvas stage */}
-        <div 
-          ref={containerRef} 
+        <div
+          ref={containerRef}
           className={`md:col-span-8 h-64 rounded-xl relative overflow-hidden ${
-            theme === "dark" ? "bg-slate-950" : "bg-slate-50 border border-slate-100"
+            theme === "dark"
+              ? "bg-slate-950"
+              : "bg-slate-50 border border-slate-100"
           }`}
         >
           <canvas
@@ -315,7 +331,9 @@ export default function GenerativeArt({ theme }: GenerativeArtProps) {
           <div className="space-y-1">
             <div className="flex justify-between text-[10px] font-mono text-slate-400">
               <span>Cohesion (Attraction)</span>
-              <span className="text-amber-500">{(cohesion * 100).toFixed(1)}%</span>
+              <span className="text-amber-500">
+                {(cohesion * 100).toFixed(1)}%
+              </span>
             </div>
             <input
               type="range"
@@ -331,7 +349,9 @@ export default function GenerativeArt({ theme }: GenerativeArtProps) {
           <div className="space-y-1">
             <div className="flex justify-between text-[10px] font-mono text-slate-400">
               <span>Alignment (Velocity Matching)</span>
-              <span className="text-amber-500">{(alignment * 100).toFixed(1)}%</span>
+              <span className="text-amber-500">
+                {(alignment * 100).toFixed(1)}%
+              </span>
             </div>
             <input
               type="range"
@@ -347,7 +367,9 @@ export default function GenerativeArt({ theme }: GenerativeArtProps) {
           <div className="space-y-1">
             <div className="flex justify-between text-[10px] font-mono text-slate-400">
               <span>Separation (Anti-Collision)</span>
-              <span className="text-amber-500">{(separation * 100).toFixed(1)}%</span>
+              <span className="text-amber-500">
+                {(separation * 100).toFixed(1)}%
+              </span>
             </div>
             <input
               type="range"
@@ -362,7 +384,9 @@ export default function GenerativeArt({ theme }: GenerativeArtProps) {
 
           <div className="pt-2 border-t border-slate-800/10">
             <div className="text-[10px] font-mono text-slate-400 leading-relaxed">
-              <strong>Emergency Dynamics:</strong> Simple local interactions create synchronous flocking behaviors with no global coordinate planner. This models trust dynamics and emergent communication.
+              <strong>Emergency Dynamics:</strong> Simple local interactions
+              create synchronous flocking behaviors with no global coordinate
+              planner. This models trust dynamics and emergent communication.
             </div>
           </div>
         </div>

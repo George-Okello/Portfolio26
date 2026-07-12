@@ -13,7 +13,7 @@ export default function AmbientBackground({ isDark }: { isDark: boolean }) {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
       {/* Noise Overlay */}
-      <div 
+      <div
         className={`absolute inset-0 z-10 transition-opacity duration-1000 ${isDark ? "opacity-[0.25]" : "opacity-[0.1]"}`}
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
@@ -21,7 +21,9 @@ export default function AmbientBackground({ isDark }: { isDark: boolean }) {
       />
 
       {/* Playful Gradient Blobs */}
-      <div className={`absolute inset-0 transition-opacity duration-1000 ${isDark ? "opacity-60 mix-blend-screen" : "opacity-30 mix-blend-multiply"}`}>
+      <div
+        className={`absolute inset-0 transition-opacity duration-1000 ${isDark ? "opacity-60 mix-blend-screen" : "opacity-30 mix-blend-multiply"}`}
+      >
         <motion.div
           animate={{
             x: ["0%", "10%", "-5%", "0%"],

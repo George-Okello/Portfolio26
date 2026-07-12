@@ -1,7 +1,12 @@
 export interface Project {
   id: string;
   title: string;
-  category: "Neuroscience" | "AI & ML" | "Social Impact" | "Network Science" | "Cognitive Science";
+  category:
+    | "Neuroscience"
+    | "AI & ML"
+    | "Social Impact"
+    | "Network Science"
+    | "Cognitive Science";
   summary: string;
   description: string;
   metrics?: { label: string; value: string }[];

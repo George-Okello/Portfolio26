@@ -1,6 +1,14 @@
 import { useState } from "react";
 import { publications, projects } from "../data";
-import { BookOpen, ChevronDown, ChevronUp, ExternalLink, Clock, Database, ArrowRight } from "lucide-react";
+import {
+  BookOpen,
+  ChevronDown,
+  ChevronUp,
+  ExternalLink,
+  Clock,
+  Database,
+  ArrowRight,
+} from "lucide-react";
 import { Publication } from "../types";
 import { motion } from "motion/react";
 
@@ -14,14 +22,26 @@ function calculateReadingTime(text: string): number {
   return Math.max(1, Math.ceil(wordCount / 200));
 }
 
-
-
-function PublicationCard({ pub, isExpanded, toggleExpand, isDark, index }: { pub: Publication, isExpanded: boolean, toggleExpand: () => void, isDark: boolean, index: number, key?: string }) {
-  const paperTypeLabel = pub.type === "Conference" ? "Conference Paper" : "Research Paper";
+function PublicationCard({
+  pub,
+  isExpanded,
+  toggleExpand,
+  isDark,
+  index,
+}: {
+  pub: Publication;
+  isExpanded: boolean;
+  toggleExpand: () => void;
+  isDark: boolean;
+  index: number;
+  key?: string;
+}) {
+  const paperTypeLabel =
+    pub.type === "Conference" ? "Conference Paper" : "Research Paper";
   const readingTime = calculateReadingTime(pub.summary || pub.title);
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       whileHover={{ y: -8, rotateX: 2, rotateY: -2, scale: 1.01 }}
@@ -31,9 +51,11 @@ function PublicationCard({ pub, isExpanded, toggleExpand, isDark, index }: { pub
     >
       <div
         onClick={toggleExpand}
-        style={{ 
+        style={{
           transformStyle: "preserve-3d",
-          transform: isExpanded ? "rotateX(2deg) rotateY(-2deg) scale(1.02)" : "rotateX(0deg) rotateY(0deg) scale(1)"
+          transform: isExpanded
+            ? "rotateX(2deg) rotateY(-2deg) scale(1.02)"
+            : "rotateX(0deg) rotateY(0deg) scale(1)",
         }}
         className={`p-6 border transition-all duration-500 cursor-pointer hover:shadow-2xl ${
           isDark
@@ -44,9 +66,11 @@ function PublicationCard({ pub, isExpanded, toggleExpand, isDark, index }: { pub
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1">
             <div className="flex flex-wrap items-center gap-2 mb-2">
-              <span className={`px-2.5 py-1 text-[9px] uppercase tracking-widest border ${
-                isDark ? "border-white/20" : "border-black/20"
-              }`}>
+              <span
+                className={`px-2.5 py-1 text-[9px] uppercase tracking-widest border ${
+                  isDark ? "border-white/20" : "border-black/20"
+                }`}
+              >
                 {pub.status}
               </span>
               <span className="flex items-center gap-1.5 text-[10px] uppercase tracking-widest opacity-50">
@@ -65,21 +89,29 @@ function PublicationCard({ pub, isExpanded, toggleExpand, isDark, index }: { pub
           </div>
 
           <div className="text-slate-400 p-1">
-            {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            {isExpanded ? (
+              <ChevronUp className="w-4 h-4" />
+            ) : (
+              <ChevronDown className="w-4 h-4" />
+            )}
           </div>
         </div>
 
         {/* Expandable summary & External Link */}
         {isExpanded && (
-          <div className={`mt-3 pt-3 border-t border-dashed flex flex-col gap-4 ${
-            isDark ? "border-slate-800/40" : "border-slate-200"
-          }`}>
-            <p className={`text-xs leading-relaxed font-sans ${isDark ? "text-slate-400" : "text-slate-600"}`}>
+          <div
+            className={`mt-3 pt-3 border-t border-dashed flex flex-col gap-4 ${
+              isDark ? "border-slate-800/40" : "border-slate-200"
+            }`}
+          >
+            <p
+              className={`text-xs leading-relaxed font-sans ${isDark ? "text-slate-400" : "text-slate-600"}`}
+            >
               {pub.summary}
             </p>
-            
+
             <div className="flex justify-end">
-              <a 
+              <a
                 href={pub.link || "#"}
                 target={pub.link ? "_blank" : "_self"}
                 rel={pub.link ? "noopener noreferrer" : ""}
@@ -88,7 +120,7 @@ function PublicationCard({ pub, isExpanded, toggleExpand, isDark, index }: { pub
                   if (!pub.link) e.preventDefault(); // Prevent navigation if no link
                 }}
                 className={`inline-flex items-center gap-2 px-3 py-1.5 rounded text-[10px] font-mono uppercase tracking-widest transition-all ${
-                  pub.link 
+                  pub.link
                     ? isDark
                       ? "bg-white/10 hover:bg-white/20 text-white"
                       : "bg-black/5 hover:bg-black/10 text-black"
@@ -108,41 +140,68 @@ function PublicationCard({ pub, isExpanded, toggleExpand, isDark, index }: { pub
   );
 }
 
-
-function NeuralNetworkButton({ href, isDark }: { href: string; isDark: boolean }) {
+function NeuralNetworkButton({
+  href,
+  isDark,
+}: {
+  href: string;
+  isDark: boolean;
+}) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
       className={`group relative inline-flex items-center justify-center px-8 py-4 font-mono text-[10px] uppercase tracking-widest font-semibold overflow-hidden border transition-all duration-500 ${
-        isDark 
-          ? "border-emerald-500/40 text-emerald-400 hover:text-emerald-300 hover:border-emerald-400" 
+        isDark
+          ? "border-emerald-500/40 text-emerald-400 hover:text-emerald-300 hover:border-emerald-400"
           : "border-emerald-600/50 text-emerald-800 hover:text-emerald-900 bg-white hover:border-emerald-600 shadow-sm"
       }`}
     >
       {/* Neural nodes and connecting lines effect */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
         {/* Nodes */}
-        <div className={`absolute top-2 left-2 w-1.5 h-1.5 rounded-full ${isDark ? "bg-emerald-400" : "bg-emerald-600"}`}></div>
-        <div className={`absolute bottom-2 left-6 w-1 h-1 rounded-full ${isDark ? "bg-emerald-400" : "bg-emerald-600"}`}></div>
-        <div className={`absolute top-3 right-8 w-1 h-1 rounded-full ${isDark ? "bg-emerald-400" : "bg-emerald-600"}`}></div>
-        <div className={`absolute bottom-2 right-2 w-1.5 h-1.5 rounded-full ${isDark ? "bg-emerald-400" : "bg-emerald-600"}`}></div>
-        <div className={`absolute top-1/2 left-1/2 w-1 h-1 rounded-full ${isDark ? "bg-emerald-400" : "bg-emerald-600"}`}></div>
-        
+        <div
+          className={`absolute top-2 left-2 w-1.5 h-1.5 rounded-full ${isDark ? "bg-emerald-400" : "bg-emerald-600"}`}
+        ></div>
+        <div
+          className={`absolute bottom-2 left-6 w-1 h-1 rounded-full ${isDark ? "bg-emerald-400" : "bg-emerald-600"}`}
+        ></div>
+        <div
+          className={`absolute top-3 right-8 w-1 h-1 rounded-full ${isDark ? "bg-emerald-400" : "bg-emerald-600"}`}
+        ></div>
+        <div
+          className={`absolute bottom-2 right-2 w-1.5 h-1.5 rounded-full ${isDark ? "bg-emerald-400" : "bg-emerald-600"}`}
+        ></div>
+        <div
+          className={`absolute top-1/2 left-1/2 w-1 h-1 rounded-full ${isDark ? "bg-emerald-400" : "bg-emerald-600"}`}
+        ></div>
+
         {/* Lines */}
-        <div className={`absolute top-2.5 left-2.5 w-4 h-[1px] origin-top-left rotate-45 ${isDark ? "bg-emerald-500/50" : "bg-emerald-600/30"}`}></div>
-        <div className={`absolute bottom-2 left-6 w-10 h-[1px] origin-bottom-left -rotate-12 ${isDark ? "bg-emerald-500/50" : "bg-emerald-600/30"}`}></div>
-        <div className={`absolute top-3 right-8 w-6 h-[1px] origin-top-right rotate-45 ${isDark ? "bg-emerald-500/50" : "bg-emerald-600/30"}`}></div>
-        <div className={`absolute bottom-2 right-2 w-6 h-[1px] origin-bottom-right -rotate-12 ${isDark ? "bg-emerald-500/50" : "bg-emerald-600/30"}`}></div>
-        <div className={`absolute top-1/2 left-1/2 w-8 h-[1px] origin-center -translate-x-1/2 -translate-y-1/2 rotate-12 ${isDark ? "bg-emerald-500/50" : "bg-emerald-600/30"}`}></div>
+        <div
+          className={`absolute top-2.5 left-2.5 w-4 h-[1px] origin-top-left rotate-45 ${isDark ? "bg-emerald-500/50" : "bg-emerald-600/30"}`}
+        ></div>
+        <div
+          className={`absolute bottom-2 left-6 w-10 h-[1px] origin-bottom-left -rotate-12 ${isDark ? "bg-emerald-500/50" : "bg-emerald-600/30"}`}
+        ></div>
+        <div
+          className={`absolute top-3 right-8 w-6 h-[1px] origin-top-right rotate-45 ${isDark ? "bg-emerald-500/50" : "bg-emerald-600/30"}`}
+        ></div>
+        <div
+          className={`absolute bottom-2 right-2 w-6 h-[1px] origin-bottom-right -rotate-12 ${isDark ? "bg-emerald-500/50" : "bg-emerald-600/30"}`}
+        ></div>
+        <div
+          className={`absolute top-1/2 left-1/2 w-8 h-[1px] origin-center -translate-x-1/2 -translate-y-1/2 rotate-12 ${isDark ? "bg-emerald-500/50" : "bg-emerald-600/30"}`}
+        ></div>
       </div>
-      
+
       {/* Glow effect */}
-      <div className={`absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out ${
-        isDark ? "bg-emerald-500/10" : "bg-emerald-100/60"
-      }`} />
-      
+      <div
+        className={`absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out ${
+          isDark ? "bg-emerald-500/10" : "bg-emerald-100/60"
+        }`}
+      />
+
       <span className="relative flex items-center gap-3 z-10">
         <Database className="w-4 h-4" />
         Explore Kaggle Notebooks
@@ -157,11 +216,18 @@ export default function PublicationsList({ theme }: PublicationsListProps) {
   const [filter, setFilter] = useState<string>("All");
   const isDark = theme === "dark";
 
-  const categories = ["All", "Neuroscience", "AI & ML", "Social Impact", "Publications"];
+  const categories = [
+    "All",
+    "Neuroscience",
+    "AI & ML",
+    "Social Impact",
+    "Publications",
+  ];
 
-  const filteredProjects = filter === "All" || filter === "Publications"
-    ? projects
-    : projects.filter(p => p.category === filter);
+  const filteredProjects =
+    filter === "All" || filter === "Publications"
+      ? projects
+      : projects.filter((p) => p.category === filter);
 
   const toggleExpandPub = (id: string) => {
     setExpandedPub(expandedPub === id ? null : id);
@@ -192,28 +258,28 @@ export default function PublicationsList({ theme }: PublicationsListProps) {
 
       {/* Grid of Projects / Publications */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
         {/* Render publications if filter is "All" or "Publications" */}
         {(filter === "All" || filter === "Publications") && (
           <div className="md:col-span-2 space-y-8">
-            
             {/* Conference Papers Section */}
-            {publications.filter(p => p.type === "Conference").length > 0 && (
+            {publications.filter((p) => p.type === "Conference").length > 0 && (
               <div>
                 <h4 className="text-[10px] uppercase tracking-widest mb-3 opacity-50 italic">
                   Conference Papers
                 </h4>
                 <div className="grid grid-cols-1 gap-4">
-                  {publications.filter(p => p.type === "Conference").map((pub, idx) => (
-                    <PublicationCard 
-                      key={pub.id} 
-                      pub={pub} 
-                      isExpanded={expandedPub === pub.id} 
-                      toggleExpand={() => toggleExpandPub(pub.id)} 
-                      isDark={isDark} 
-                      index={idx}
-                    />
-                  ))}
+                  {publications
+                    .filter((p) => p.type === "Conference")
+                    .map((pub, idx) => (
+                      <PublicationCard
+                        key={pub.id}
+                        pub={pub}
+                        isExpanded={expandedPub === pub.id}
+                        toggleExpand={() => toggleExpandPub(pub.id)}
+                        isDark={isDark}
+                        index={idx}
+                      />
+                    ))}
                 </div>
               </div>
             )}
@@ -223,18 +289,20 @@ export default function PublicationsList({ theme }: PublicationsListProps) {
               <h4 className="text-[10px] uppercase tracking-widest mb-3 opacity-50 italic">
                 Academic Publications & Preprints
               </h4>
-              
+
               <div className="grid grid-cols-1 gap-4">
-                {publications.filter(p => p.type !== "Conference").map((pub, idx) => (
-                  <PublicationCard 
-                    key={pub.id} 
-                    pub={pub} 
-                    isExpanded={expandedPub === pub.id} 
-                    toggleExpand={() => toggleExpandPub(pub.id)} 
-                    isDark={isDark} 
-                    index={idx}
-                  />
-                ))}
+                {publications
+                  .filter((p) => p.type !== "Conference")
+                  .map((pub, idx) => (
+                    <PublicationCard
+                      key={pub.id}
+                      pub={pub}
+                      isExpanded={expandedPub === pub.id}
+                      toggleExpand={() => toggleExpandPub(pub.id)}
+                      isDark={isDark}
+                      index={idx}
+                    />
+                  ))}
               </div>
             </div>
           </div>
@@ -248,13 +316,13 @@ export default function PublicationsList({ theme }: PublicationsListProps) {
                 <h4 className="text-[10px] uppercase tracking-widest opacity-50 italic mb-0">
                   Empirical Research & Core Implementations
                 </h4>
-                <a 
+                <a
                   href="https://online.anyflip.com/ckosy/cscn/mobile/index.html"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`inline-flex items-center gap-2 px-3 py-1.5 rounded text-[10px] font-mono uppercase tracking-widest transition-all w-fit ${
-                    isDark 
-                      ? "bg-white/5 hover:bg-white/10 text-white/80 border border-white/10" 
+                    isDark
+                      ? "bg-white/5 hover:bg-white/10 text-white/80 border border-white/10"
                       : "bg-black/5 hover:bg-black/10 text-black/80 border border-black/10"
                   }`}
                 >
@@ -266,8 +334,8 @@ export default function PublicationsList({ theme }: PublicationsListProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {filteredProjects.map((p, idx) => (
-                <motion.div 
-                  key={p.id} 
+                <motion.div
+                  key={p.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   whileHover={{ y: -8, rotateX: 2, rotateY: -2, scale: 1.01 }}
@@ -283,67 +351,88 @@ export default function PublicationsList({ theme }: PublicationsListProps) {
                         : "border-slate-200 border-b-[3px] border-b-slate-300/70 hover:border-b-slate-400 bg-white shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_-4px_rgba(0,0,0,0.1)]"
                     }`}
                   >
-                  <div>
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="flex items-center gap-2">
-                        <span className={`px-3 py-1 text-[9px] uppercase tracking-widest border ${
-                          isDark ? "border-white/20" : "border-black/20"
-                        }`}>
-                          {p.category}
-                        </span>
-                        <span className="flex items-center gap-1.5 text-[10px] uppercase tracking-widest opacity-50 ml-2">
-                          <Clock className="w-3 h-3" />
-                          <span>{calculateReadingTime(p.description + " " + p.details.join(" "))} min read</span>
-                        </span>
+                    <div>
+                      <div className="flex items-center justify-between mb-6">
+                        <div className="flex items-center gap-2">
+                          <span
+                            className={`px-3 py-1 text-[9px] uppercase tracking-widest border ${
+                              isDark ? "border-white/20" : "border-black/20"
+                            }`}
+                          >
+                            {p.category}
+                          </span>
+                          <span className="flex items-center gap-1.5 text-[10px] uppercase tracking-widest opacity-50 ml-2">
+                            <Clock className="w-3 h-3" />
+                            <span>
+                              {calculateReadingTime(
+                                p.description + " " + p.details.join(" "),
+                              )}{" "}
+                              min read
+                            </span>
+                          </span>
+                        </div>
+                        <BookOpen className="w-4 h-4 text-slate-400" />
                       </div>
-                      <BookOpen className="w-4 h-4 text-slate-400" />
-                    </div>
 
-                    <h5 className="text-xl font-serif tracking-tight mt-4">
-                      {p.title}
-                    </h5>
-                    
-                    <p className="text-xs mt-3 leading-relaxed opacity-80 font-light">
-                      {p.description}
-                    </p>
+                      <h5 className="text-xl font-serif tracking-tight mt-4">
+                        {p.title}
+                      </h5>
 
-                    {/* Metrics list */}
-                    {p.metrics && p.metrics.length > 0 && (
-                      <div className="grid grid-cols-2 gap-2 mt-4">
-                        {p.metrics.map((m, idx) => (
-                          <div key={idx} className={`p-2 rounded-xl ${isDark ? "bg-slate-950/60" : "bg-slate-50"}`}>
-                            <div className="text-[8px] font-mono text-slate-400 uppercase">{m.label}</div>
-                            <div className={`text-xs font-mono font-semibold ${isDark ? "text-slate-200" : "text-slate-800"}`}>{m.value}</div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
+                      <p className="text-xs mt-3 leading-relaxed opacity-80 font-light">
+                        {p.description}
+                      </p>
 
-                    {/* Details list */}
-                    <ul className="space-y-1.5 mt-4">
-                      {p.details.map((detail, idx) => (
-                          <li key={idx} className="flex items-start gap-2 text-[11px] opacity-70 leading-normal">
+                      {/* Metrics list */}
+                      {p.metrics && p.metrics.length > 0 && (
+                        <div className="grid grid-cols-2 gap-2 mt-4">
+                          {p.metrics.map((m, idx) => (
+                            <div
+                              key={idx}
+                              className={`p-2 rounded-xl ${isDark ? "bg-slate-950/60" : "bg-slate-50"}`}
+                            >
+                              <div className="text-[8px] font-mono text-slate-400 uppercase">
+                                {m.label}
+                              </div>
+                              <div
+                                className={`text-xs font-mono font-semibold ${isDark ? "text-slate-200" : "text-slate-800"}`}
+                              >
+                                {m.value}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Details list */}
+                      <ul className="space-y-1.5 mt-4">
+                        {p.details.map((detail, idx) => (
+                          <li
+                            key={idx}
+                            className="flex items-start gap-2 text-[11px] opacity-70 leading-normal"
+                          >
                             <span className="opacity-50">—</span>
                             <span>{detail}</span>
                           </li>
-                      ))}
-                    </ul>
-                  </div>
+                        ))}
+                      </ul>
+                    </div>
 
-                  <div className="flex flex-wrap items-center gap-1.5 mt-6 pt-4 border-t border-slate-800/10">
-                    {p.tech.map((t, idx) => (
-                      <span key={idx} className="text-[9px] font-mono text-slate-400 px-1.5 py-0.5 bg-slate-800/5 rounded border border-slate-800/5">
-                        {t}
-                      </span>
-                    ))}
+                    <div className="flex flex-wrap items-center gap-1.5 mt-6 pt-4 border-t border-slate-800/10">
+                      {p.tech.map((t, idx) => (
+                        <span
+                          key={idx}
+                          className="text-[9px] font-mono text-slate-400 px-1.5 py-0.5 bg-slate-800/5 rounded border border-slate-800/5"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
               ))}
             </div>
           </div>
         )}
-
 
         {/* Kaggle Creative Banner */}
         <motion.div
@@ -352,8 +441,8 @@ export default function PublicationsList({ theme }: PublicationsListProps) {
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
           className={`mt-16 md:col-span-2 relative overflow-hidden p-8 md:p-12 border ${
-            isDark 
-              ? "border-emerald-500/20 bg-gradient-to-r from-emerald-500/10 to-transparent" 
+            isDark
+              ? "border-emerald-500/20 bg-gradient-to-r from-emerald-500/10 to-transparent"
               : "border-emerald-500/30 bg-gradient-to-r from-emerald-50 to-transparent"
           }`}
         >
@@ -363,28 +452,41 @@ export default function PublicationsList({ theme }: PublicationsListProps) {
               <div className="w-16 h-16 rounded-full border-2 border-emerald-500 animate-[spin_15s_linear_infinite_reverse]" />
             </div>
           </div>
-          
+
           <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
             <div className="max-w-2xl">
               <div className="flex items-center gap-3 mb-4">
-                <div className={`p-2 border rounded ${isDark ? "border-emerald-500/30 bg-emerald-500/10" : "border-emerald-300 bg-emerald-100/50"}`}>
-                  <Database className={`w-5 h-5 ${isDark ? "text-emerald-400" : "text-emerald-600"}`} />
+                <div
+                  className={`p-2 border rounded ${isDark ? "border-emerald-500/30 bg-emerald-500/10" : "border-emerald-300 bg-emerald-100/50"}`}
+                >
+                  <Database
+                    className={`w-5 h-5 ${isDark ? "text-emerald-400" : "text-emerald-600"}`}
+                  />
                 </div>
-                <span className={`text-[10px] font-mono uppercase tracking-widest font-semibold ${isDark ? "text-emerald-400" : "text-emerald-700"}`}>
+                <span
+                  className={`text-[10px] font-mono uppercase tracking-widest font-semibold ${isDark ? "text-emerald-400" : "text-emerald-700"}`}
+                >
                   More Explorations
                 </span>
               </div>
-              <h4 className="text-2xl font-serif tracking-tight mb-2">Data Science & Competitions</h4>
+              <h4 className="text-2xl font-serif tracking-tight mb-2">
+                Data Science & Competitions
+              </h4>
               <p className="text-sm font-light opacity-80 leading-relaxed">
-                While my selected major works are detailed above, I also actively experiment with datasets, build predictive models, and share notebooks on Kaggle. Explore my other exploratory data analyses and competition entries.
+                While my selected major works are detailed above, I also
+                actively experiment with datasets, build predictive models, and
+                share notebooks on Kaggle. Explore my other exploratory data
+                analyses and competition entries.
               </p>
             </div>
-            
-            <NeuralNetworkButton href="https://www.kaggle.com/georgeokello/" isDark={isDark} />
+
+            <NeuralNetworkButton
+              href="https://www.kaggle.com/georgeokello/"
+              isDark={isDark}
+            />
           </div>
         </motion.div>
       </div>
     </div>
   );
 }
-

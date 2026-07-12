@@ -1,5 +1,4 @@
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "react-helmet-async";
 
 interface SEOProps {
   title?: string;
@@ -18,7 +17,13 @@ export default function SEO({
   url = "https://gokello.me/",
   type = "website",
   name = "George Okello",
-  keywords = ["Computational Neuroscience", "AI Researcher", "Machine Learning", "Network Science", "George Okello Ouma"]
+  keywords = [
+    "Computational Neuroscience",
+    "AI Researcher",
+    "Machine Learning",
+    "Network Science",
+    "George Okello Ouma",
+  ],
 }: SEOProps) {
   const fullTitle = title.includes(name) ? title : `${title} | ${name}`;
 
@@ -27,7 +32,7 @@ export default function SEO({
       {/* Standard metadata tags */}
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
-      <meta name="keywords" content={keywords.join(', ')} />
+      <meta name="keywords" content={keywords.join(", ")} />
 
       {/* Canonical Link */}
       <link rel="canonical" href={url} />
@@ -46,7 +51,7 @@ export default function SEO({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
       <meta name="twitter:url" content={url} />
-      
+
       {/* Search Engine Hints */}
       <meta name="robots" content="index, follow" />
       <meta name="author" content={name} />

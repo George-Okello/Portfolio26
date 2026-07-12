@@ -8,7 +8,7 @@ export const personalInfo = {
   phone: "+254706772057",
   email: "georgeokelloouma@gmail.com",
   website: "https://gokello.me/",
-  linkedin: "linkedin.com/in/georgeokello",
+  linkedin: "",
   languages: [
     { name: "English", level: "Native" },
     { name: "Swahili", level: "Native" },
@@ -25,8 +25,8 @@ export const personalInfo = {
     "Bilingual Language Dynamics",
     "Multi-Agent Reinforcement Learning",
     "Interpretable & Explainable AI",
-    "Complex Adaptive Systems"
-  ]
+    "Complex Adaptive Systems",
+  ],
 };
 
 export const projects: Project[] = [
@@ -34,129 +34,190 @@ export const projects: Project[] = [
     id: "eeg-load",
     title: "EEG-Based Cognitive Load Classification",
     category: "Neuroscience",
-    summary: "Real-time cognitive state estimation using lightweight Transformer architectures.",
-    description: "Developed lightweight Transformer architectures for real-time cognitive state estimation using the SEED-VIG dataset, outperforming classic CNN and LSTM baselines.",
+    summary:
+      "Real-time cognitive state estimation using lightweight Transformer architectures.",
+    description:
+      "Developed lightweight Transformer architectures for real-time cognitive state estimation using the SEED-VIG dataset, outperforming classic CNN and LSTM baselines.",
     metrics: [
       { label: "Classification Accuracy", value: "79%" },
-      { label: "Explainability Metric", value: "Grad-CAM/Attention" }
+      { label: "Explainability Metric", value: "Grad-CAM/Attention" },
     ],
     details: [
       "Designed and trained lightweight Transformer models for sequence modeling of EEG channels.",
       "Achieved 79% accuracy, significantly outperforming benchmark CNN and LSTM architectures.",
-      "Integrated Grad-CAM and self-attention visualizations to map feature importances directly to brain areas, boosting trust and interpretability in neuroadaptive applications."
+      "Integrated Grad-CAM and self-attention visualizations to map feature importances directly to brain areas, boosting trust and interpretability in neuroadaptive applications.",
     ],
-    tech: ["PyTorch", "Transformers", "EEG", "Grad-CAM", "Attention Mechanisms", "Signal Processing"],
-    visualType: "brain"
+    tech: [
+      "PyTorch",
+      "Transformers",
+      "EEG",
+      "Grad-CAM",
+      "Attention Mechanisms",
+      "Signal Processing",
+    ],
+    visualType: "brain",
   },
   {
     id: "bilingual-dynamics",
     title: "Bilingual Language Switching Dynamics",
     category: "Neuroscience",
-    summary: "Simulating Anterior Cingulate Cortex control costs during English-Spanish code-switching.",
-    description: "Investigated neural mechanisms underlying code-switching using multilingual BERT representations on the UN Parallel Corpus to model cognitive control trajectories.",
+    summary:
+      "Simulating Anterior Cingulate Cortex control costs during English-Spanish code-switching.",
+    description:
+      "Investigated neural mechanisms underlying code-switching using multilingual BERT representations on the UN Parallel Corpus to model cognitive control trajectories.",
     metrics: [
       { label: "Data Source", value: "UN Parallel Corpus" },
-      { label: "Target Region", value: "Simulated ACC (sACC)" }
+      { label: "Target Region", value: "Simulated ACC (sACC)" },
     ],
     details: [
       "Modeled bilingual lexical retrieval and code-switching costs using deep neural representations.",
       "Developed a novel simulated Anterior Cingulate Cortex (sACC) activation metric to quantify cognitive control demands during language switches.",
-      "Revealed continuous activation trajectories and symmetric control costs across English-Spanish switching directions."
+      "Revealed continuous activation trajectories and symmetric control costs across English-Spanish switching directions.",
     ],
-    tech: ["BERT", "NLP", "Cognitive Modeling", "Anatomy-Inspired Metrics", "Python", "PyTorch"],
-    visualType: "language"
+    tech: [
+      "BERT",
+      "NLP",
+      "Cognitive Modeling",
+      "Anatomy-Inspired Metrics",
+      "Python",
+      "PyTorch",
+    ],
+    visualType: "language",
   },
   {
     id: "noisy-rl",
     title: "Reinforcement Learning Under Noisy Observations",
     category: "AI & ML",
-    summary: "LSTM-DQN variants evaluated in memory-constrained visual N-back paradigm tasks.",
-    description: "Evaluated robustness of deep Q-network (DQN) variants in a modified CartPole environment with noisy visual feedback to understand temporal credit assignment.",
+    summary:
+      "LSTM-DQN variants evaluated in memory-constrained visual N-back paradigm tasks.",
+    description:
+      "Evaluated robustness of deep Q-network (DQN) variants in a modified CartPole environment with noisy visual feedback to understand temporal credit assignment.",
     metrics: [
       { label: "Statistical Significance", value: "p = 0.0034" },
-      { label: "Effect Size (Cohen's d)", value: "-0.422" }
+      { label: "Effect Size (Cohen's d)", value: "-0.422" },
     ],
     details: [
       "Tested standard, Noisy, and LSTM-based Deep Q-Networks under severe sensory perturbations.",
       "Demonstrated significant performance advantages for LSTM-DQN under memory constraints, indicating superior credit assignment over time.",
-      "Contributed new insights to the problem of partial observability in neuro-inspired reinforcement learning."
+      "Contributed new insights to the problem of partial observability in neuro-inspired reinforcement learning.",
     ],
-    tech: ["Reinforcement Learning", "DQN", "LSTM-DQN", "Noisy Nets", "OpenAI Gym", "CartPole"],
-    visualType: "agents"
+    tech: [
+      "Reinforcement Learning",
+      "DQN",
+      "LSTM-DQN",
+      "Noisy Nets",
+      "OpenAI Gym",
+      "CartPole",
+    ],
+    visualType: "agents",
   },
   {
     id: "cognitive-biases-rl",
     title: "When AI Thinks Like Humans: Cognitive Biases in RL",
     category: "Cognitive Science",
-    summary: "Simulating human cognitive biases in reinforcement learning agents using a multi-armed bandit setup.",
-    description: "Developed and evaluated RL agents exhibiting classic human cognitive biases (Loss Aversion, Anchoring, Confirmation, Optimism) within a multi-armed bandit problem to understand how irrational heuristics affect decision-making.",
+    summary:
+      "Simulating human cognitive biases in reinforcement learning agents using a multi-armed bandit setup.",
+    description:
+      "Developed and evaluated RL agents exhibiting classic human cognitive biases (Loss Aversion, Anchoring, Confirmation, Optimism) within a multi-armed bandit problem to understand how irrational heuristics affect decision-making.",
     metrics: [
       { label: "Simulated Biases", value: "4 Distinct Types" },
-      { label: "Environment", value: "Multi-Armed Bandit" }
+      { label: "Environment", value: "Multi-Armed Bandit" },
     ],
     details: [
       "Loss Aversion: Improved learning by making agents quickly discard low-reward arms.",
       "Anchoring & Confirmation Bias: Often caused agents to get stuck on early impressions or cling to false beliefs.",
       "Optimism Bias: Enhanced early exploration and helped agents find the optimal arm faster.",
-      "Demonstrated that cognitive biases can sometimes act as beneficial heuristics in uncertain, real-world scenarios."
+      "Demonstrated that cognitive biases can sometimes act as beneficial heuristics in uncertain, real-world scenarios.",
     ],
-    tech: ["Reinforcement Learning", "Multi-Armed Bandit", "Cognitive Biases", "Behavioral Economics", "Python"],
-    visualType: "brain"
+    tech: [
+      "Reinforcement Learning",
+      "Multi-Armed Bandit",
+      "Cognitive Biases",
+      "Behavioral Economics",
+      "Python",
+    ],
+    visualType: "brain",
   },
   {
     id: "agri-chatbot",
     title: "Agricultural AI Chatbot & Advisor",
     category: "Social Impact",
-    summary: "Climate-adaptive NLP system providing localized weather and agricultural guidance to Kenyan farmers.",
-    description: "Designed and implemented an NLP-driven conversational agent to assist Kenyan smallholders, backed by a Mozilla Foundation Research Grant.",
+    summary:
+      "Climate-adaptive NLP system providing localized weather and agricultural guidance to Kenyan farmers.",
+    description:
+      "Designed and implemented an NLP-driven conversational agent to assist Kenyan smallholders, backed by a Mozilla Foundation Research Grant.",
     metrics: [
       { label: "Funding Body", value: "Mozilla Foundation" },
-      { label: "Impact Target", value: "Kenyan Smallholders" }
+      { label: "Impact Target", value: "Kenyan Smallholders" },
     ],
     details: [
       "Created an NLP chatbot providing localized, real-time weather forecasts and evidence-based agricultural guidance.",
       "Integrated real-time meteorological data pipelines with sustainable farming rules to aid climate-adaptive decision making.",
-      "Featured on the official Mozilla Foundation Blog as a scalable AI solution for food security in resource-constrained regions."
+      "Featured on the official Mozilla Foundation Blog as a scalable AI solution for food security in resource-constrained regions.",
     ],
-    tech: ["NLP", "Weather APIs", "Climate Models", "Decision Support Systems", "Python", "Local Databases"],
-    visualType: "network"
+    tech: [
+      "NLP",
+      "Weather APIs",
+      "Climate Models",
+      "Decision Support Systems",
+      "Python",
+      "Local Databases",
+    ],
+    visualType: "network",
   },
   {
     id: "interpretable-medical",
     title: "Interpretable Medical AI",
     category: "AI & ML",
-    summary: "Explainable decision trees for reversible cardiac condition detection using LIME and SHAP.",
-    description: "Developed clear decision-support models for cardiac diagnostic classification, achieving high performance while maintaining complete clinical transparency.",
+    summary:
+      "Explainable decision trees for reversible cardiac condition detection using LIME and SHAP.",
+    description:
+      "Developed clear decision-support models for cardiac diagnostic classification, achieving high performance while maintaining complete clinical transparency.",
     metrics: [
       { label: "Diagnostic Accuracy", value: "83%" },
-      { label: "Explainability Tools", value: "LIME / SHAP" }
+      { label: "Explainability Tools", value: "LIME / SHAP" },
     ],
     details: [
       "Built and optimized decision tree models specifically designed to represent transparent clinical reasoning paths.",
       "Applied local interpretable model-agnostic explanations (LIME) and SHAP values to explain predictions on a patient-by-patient basis.",
-      "Balanced the trade-off between predictive accuracy and clinician trust in critical healthcare systems."
+      "Balanced the trade-off between predictive accuracy and clinician trust in critical healthcare systems.",
     ],
-    tech: ["Decision Trees", "LIME", "SHAP", "Explainable AI (XAI)", "Cardiac Diagnostics", "Scikit-Learn"],
-    visualType: "chart"
+    tech: [
+      "Decision Trees",
+      "LIME",
+      "SHAP",
+      "Explainable AI (XAI)",
+      "Cardiac Diagnostics",
+      "Scikit-Learn",
+    ],
+    visualType: "chart",
   },
   {
     id: "complex-network-dynamics",
     title: "Network Dynamics in Multi-Agent Systems",
     category: "Network Science",
-    summary: "Graph neural networks for analyzing the structural properties and information flow in multi-agent environments.",
-    description: "Investigated how network topology influences collective behavior and decision-making in artificial multi-agent systems, using Graph Neural Networks (GNNs) to model communication bottlenecks.",
+    summary:
+      "Graph neural networks for analyzing the structural properties and information flow in multi-agent environments.",
+    description:
+      "Investigated how network topology influences collective behavior and decision-making in artificial multi-agent systems, using Graph Neural Networks (GNNs) to model communication bottlenecks.",
     metrics: [
       { label: "Topology Analyzed", value: "Small-World & Scale-Free" },
-      { label: "Information Transfer", value: "+34% Efficiency" }
+      { label: "Information Transfer", value: "+34% Efficiency" },
     ],
     details: [
       "Applied graph theory and network science methodologies to map information flow in decentralized AI systems.",
       "Identified critical hub agents and structural bottlenecks that dictate system-wide convergence in complex adaptive networks.",
-      "Developed an interpretable GNN framework to predict macroscopic behaviors from microscopic network interactions."
+      "Developed an interpretable GNN framework to predict macroscopic behaviors from microscopic network interactions.",
     ],
-    tech: ["Graph Neural Networks", "NetworkX", "PyTorch Geometric", "Complex Systems", "Multi-Agent Systems"],
-    visualType: "network"
-  }
+    tech: [
+      "Graph Neural Networks",
+      "NetworkX",
+      "PyTorch Geometric",
+      "Complex Systems",
+      "Multi-Agent Systems",
+    ],
+    visualType: "network",
+  },
 ];
 
 export const experiences: Experience[] = [
@@ -167,9 +228,9 @@ export const experiences: Experience[] = [
     location: "South Bend, Indiana",
     period: "Jul 2024",
     bullets: [
-      "Packed and prepared meals for over 3,500 children for distribution."
+      "Packed and prepared meals for over 3,500 children for distribution.",
     ],
-    type: "Service"
+    type: "Service",
   },
   {
     id: "exp-apu-ra",
@@ -181,9 +242,9 @@ export const experiences: Experience[] = [
       "Collaborated with faculty on advanced machine learning research projects within the MSc AI program.",
       "Contributed to scientific manuscripts, preparing drafts for journals and conference submissions.",
       "Designed and executed computational experiments, keeping detailed logs of models, losses, and hyperparameters.",
-      "Authored critical technical and mathematical sections for peer-reviewed publications."
+      "Authored critical technical and mathematical sections for peer-reviewed publications.",
     ],
-    type: "Research"
+    type: "Research",
   },
   {
     id: "exp-nd-vr",
@@ -195,9 +256,9 @@ export const experiences: Experience[] = [
       "Developed an epidemiological forecasting model for mosquito outbreak predictions using weather time-series data and machine learning.",
       "Created interactive geo-visualizations using Folium maps to represent epidemiological risks for decision-makers.",
       "Contributed to computer vision research for 3D game developments, evaluating real-world imagery recognition algorithms.",
-      "Collaborated daily with interdisciplinary, international teams of biologists, public health officials, and computer scientists."
+      "Collaborated daily with interdisciplinary, international teams of biologists, public health officials, and computer scientists.",
     ],
-    type: "Research"
+    type: "Research",
   },
   {
     id: "exp-strath-ds",
@@ -209,9 +270,9 @@ export const experiences: Experience[] = [
       "Conducted statistical analyses and developed complex visualizations to interpret institutional research outcomes.",
       "Applied sophisticated loss functions and detailed variance analysis to refine model evaluations and diagnostic performance.",
       "Authored comprehensive technical reports detailing the mathematical formulations of predictive models.",
-      "Presented research methodologies and findings to academic boards and at regional conferences."
+      "Presented research methodologies and findings to academic boards and at regional conferences.",
     ],
-    type: "Research"
+    type: "Research",
   },
   {
     id: "exp-strath-inst",
@@ -223,9 +284,9 @@ export const experiences: Experience[] = [
       "Delivered technical lectures and hands-on laboratory workshops for the Data Science Certificate program.",
       "Taught foundational programming concepts in Python, emphasizing robust data manipulation using Pandas and NumPy.",
       "Developed high-quality curriculum, coding assignments, and grading rubrics for machine learning courses.",
-      "Mentored dozens of students on their capstone projects, research methodologies, and career directions."
+      "Mentored dozens of students on their capstone projects, research methodologies, and career directions.",
     ],
-    type: "Teaching"
+    type: "Teaching",
   },
   {
     id: "exp-strath-bi",
@@ -237,9 +298,9 @@ export const experiences: Experience[] = [
       "Built and deployed scalable data pipelines extracting, transforming, and loading diverse corporate data streams.",
       "Implemented highly interactive dashboards for consulting clients, delivering data-driven insights that guided C-suite strategy.",
       "Developed proof-of-concept prototypes, including audio spectrogram analysis tools and LLM integrations with relational databases.",
-      "Applied advanced statistical methods and predictive models to improve institutional decision-making systems."
+      "Applied advanced statistical methods and predictive models to improve institutional decision-making systems.",
     ],
-    type: "Professional"
+    type: "Professional",
   },
   {
     id: "exp-re-pca",
@@ -251,9 +312,9 @@ export const experiences: Experience[] = [
       "Assisted in Strategic Human Resource Management (SHRM) initiatives, applying people analytics models to team dynamics.",
       "Conducted systematic, data-driven evaluations of job candidates utilizing resume screening algorithms and psychometric metrics.",
       "Applied predictive analytics to candidate profiling and hiring success factors, optimizing recruiting operations.",
-      "Supported organizational culture assessments and complex workforce planning initiatives through statistical modeling."
+      "Supported organizational culture assessments and complex workforce planning initiatives through statistical modeling.",
     ],
-    type: "Professional"
+    type: "Professional",
   },
   {
     id: "exp-ceu-researcher",
@@ -264,9 +325,9 @@ export const experiences: Experience[] = [
     bullets: [
       "Conducting advanced research at the intersection of network science, artificial intelligence, and complex systems.",
       "Investigating the structural properties and dynamics of complex networks within multi-agent reinforcement learning (MARL) environments.",
-      "Developing computational models to analyze cognitive architectures and complex adaptive social behaviors."
+      "Developing computational models to analyze cognitive architectures and complex adaptive social behaviors.",
     ],
-    type: "Research"
+    type: "Research",
   },
   {
     id: "exp-psc-support",
@@ -279,9 +340,9 @@ export const experiences: Experience[] = [
       "Managed real-time hardware and software support during active sittings, addressing issues with microphones, presentation systems, and tablets.",
       "Ensured all critical legislative chamber technologies were fully updated, audited, and running optimally prior to each session.",
       "Contributed to national IT infrastructure diagnostics and security enhancement audits.",
-      "Gained deep knowledge in large-scale system administration, networking, and critical cybersecurity protocols."
+      "Gained deep knowledge in large-scale system administration, networking, and critical cybersecurity protocols.",
     ],
-    type: "Service"
+    type: "Service",
   },
   {
     id: "exp-knls-vol",
@@ -293,10 +354,10 @@ export const experiences: Experience[] = [
       "Organized large library collections and updated digital catalog systems as part of an undergraduate community-service program.",
       "Coordinated mobile library deliveries to underprivileged schools, bringing critical educational materials to resource-scarce communities.",
       "Conducted active orientation sessions and literacy workshops for visiting student groups, promoting reading culture.",
-      "Fostered community outreach initiatives supporting literacy, access, and educational equity."
+      "Fostered community outreach initiatives supporting literacy, access, and educational equity.",
     ],
-    type: "Service"
-  }
+    type: "Service",
+  },
 ];
 
 export const educations: Education[] = [
@@ -309,12 +370,14 @@ export const educations: Education[] = [
     bullets: [
       "Double focus on Computer Science and Business Administration.",
       "Developed foundational knowledge in algorithms, data structures, and database management.",
-      "Completed rigorous coursework in business strategy, economics, and corporate IT alignment."
+      "Completed rigorous coursework in business strategy, economics, and corporate IT alignment.",
     ],
     thesis: {
-      title: "Developing an intrusion detection system using Neural Networks for automated network threat detection",
-      description: "Designed a multi-layer perceptron neural network trained on network flow packets to identify real-time intrusion signatures with high accuracy."
-    }
+      title:
+        "Developing an intrusion detection system using Neural Networks for automated network threat detection",
+      description:
+        "Designed a multi-layer perceptron neural network trained on network flow packets to identify real-time intrusion signatures with high accuracy.",
+    },
   },
   {
     id: "edu-apu-msc",
@@ -325,12 +388,14 @@ export const educations: Education[] = [
     bullets: [
       "Specialized deeply in Advanced Machine Learning, Neuro-Symbolic AI, and Reinforcement Learning.",
       "Collaborated with leading research professors on EEG and cognitive modeling.",
-      "Authored and compiled multiple research manuscripts for publication."
+      "Authored and compiled multiple research manuscripts for publication.",
     ],
     thesis: {
-      title: "Exploring computational approaches to understanding collaborative behaviors between intelligent agents",
-      description: "Developed models that investigated how social hierarchies, trust, and communication emerge in multi-agent reinforcement learning (MARL) structures."
-    }
+      title:
+        "Exploring computational approaches to understanding collaborative behaviors between intelligent agents",
+      description:
+        "Developed models that investigated how social hierarchies, trust, and communication emerge in multi-agent reinforcement learning (MARL) structures.",
+    },
   },
   {
     id: "edu-phd",
@@ -340,9 +405,9 @@ export const educations: Education[] = [
     period: "",
     bullets: [
       "Focusing on the intersection of network science, artificial intelligence, and complex systems.",
-      "Investigating the structural properties and dynamics of complex networks in multi-agent systems and cognitive architectures."
-    ]
-  }
+      "Investigating the structural properties and dynamics of complex networks in multi-agent systems and cognitive architectures.",
+    ],
+  },
 ];
 
 export const awards: Award[] = [
@@ -351,69 +416,80 @@ export const awards: Award[] = [
     title: "Innovate Africa Challenge Winner",
     issuer: "Smart Africa Initiative for AI Innovation",
     period: "2024 - 2025",
-    description: "Recognized for innovative AI solutions addressing critical socio-economic challenges across the African continent. Awarded for developing scalable, localized, climate-adaptive intelligence platforms.",
-    link: "smartafrica.org/innovate-africa-challenge"
+    description:
+      "Recognized for innovative AI solutions addressing critical socio-economic challenges across the African continent. Awarded for developing scalable, localized, climate-adaptive intelligence platforms.",
+    link: "smartafrica.org/innovate-africa-challenge",
   },
   {
     id: "award-mozilla-grant",
     title: "Mozilla Foundation Research Grant",
     issuer: "Mozilla Foundation",
     period: "2023",
-    description: "Awarded a competitive research grant under 'AI for Social Impact' for developing accessible, localized agricultural decision support systems for Kenyan smallholders. Project was featured on the official Mozilla Foundation Blog."
-  }
+    description:
+      "Awarded a competitive research grant under 'AI for Social Impact' for developing accessible, localized agricultural decision support systems for Kenyan smallholders. Project was featured on the official Mozilla Foundation Blog.",
+  },
 ];
 
 export const publications: Publication[] = [
   {
     id: "pub-indaba-2026",
-    title: "DC-AFL: Drift-Corrected Asynchronous Federated Learning for Infrastructure-Constrained Healthcare Networks",
+    title:
+      "DC-AFL: Drift-Corrected Asynchronous Federated Learning for Infrastructure-Constrained Healthcare Networks",
     authors: "Betsy Muriithi, Alvin Mugwe, George O. Ouma",
     status: "Under Review",
     type: "Conference",
-    summary: "A framework combining a Version Memory Buffer, Hessian-approximated drift correction, and two-parameter polynomial damping to address the infrastructure exclusion problem in federated learning across sub-Saharan Africa. Submitted to Deep Learning Indaba 2026.",
-    link: ""
+    summary:
+      "A framework combining a Version Memory Buffer, Hessian-approximated drift correction, and two-parameter polynomial damping to address the infrastructure exclusion problem in federated learning across sub-Saharan Africa. Submitted to Deep Learning Indaba 2026.",
+    link: "",
   },
   {
     id: "pub-multimodal-pipeline",
-    title: "Multi-Modal Data Pipeline Integration on Cross-Platform Applications: A Comprehensive Literature Review",
+    title:
+      "Multi-Modal Data Pipeline Integration on Cross-Platform Applications: A Comprehensive Literature Review",
     authors: "George O. Ouma",
     status: "In Preparation",
-    summary: "A systematic review exploring the standard engineering patterns, latency-minimization protocols, and cross-platform architectures used to integrate multi-modal sensor and data streams.",
-    link: ""
+    summary:
+      "A systematic review exploring the standard engineering patterns, latency-minimization protocols, and cross-platform architectures used to integrate multi-modal sensor and data streams.",
+    link: "",
   },
   {
     id: "pub-neurosymbolic-ai",
-    title: "Neuro-Symbolic AI for Verifiable and Ethical Reasoning in Critical Societal Applications: A Systematic Literature Review",
+    title:
+      "Neuro-Symbolic AI for Verifiable and Ethical Reasoning in Critical Societal Applications: A Systematic Literature Review",
     authors: "George O. Ouma",
     status: "In Preparation",
-    summary: "An exploration into the fusion of neural-network learning architectures and symbolic logic frameworks, addressing verifiable correctness and compliance with ethical guidelines in high-stakes public systems.",
-    link: ""
+    summary:
+      "An exploration into the fusion of neural-network learning architectures and symbolic logic frameworks, addressing verifiable correctness and compliance with ethical guidelines in high-stakes public systems.",
+    link: "",
   },
   {
     id: "pub-social-hierarchies",
-    title: "Computational Modelling of Social Hierarchies & Trust Dynamics Using Multiagent Reinforcement Learning",
+    title:
+      "Computational Modelling of Social Hierarchies & Trust Dynamics Using Multiagent Reinforcement Learning",
     authors: "George O. Ouma",
     status: "In Preparation",
-    summary: "Investigating the emergence of social hierarchies, cooperative strategies, and trust structures among autonomous learning agents in partially observable, competitive-cooperative tasks.",
-    link: ""
-  }
+    summary:
+      "Investigating the emergence of social hierarchies, cooperative strategies, and trust structures among autonomous learning agents in partially observable, competitive-cooperative tasks.",
+    link: "",
+  },
 ];
 
 export const certifications = [
   {
     id: "cert-ds",
     title: "Certificate in Data Science",
-    description: "Advanced statistical methods and machine learning."
+    description: "Advanced statistical methods and machine learning.",
   },
   {
     id: "cert-cs",
     title: "Certificate in Cyber Security Analysis",
-    description: "Focused on pentesting, offensive tactics, and defensive methods."
+    description:
+      "Focused on pentesting, offensive tactics, and defensive methods.",
   },
   {
     id: "cert-repair",
     title: "Certificate in Computer and Mobile Repair",
-    description: "Hardware-software integration and physical component architecture."
-  }
+    description:
+      "Hardware-software integration and physical component architecture.",
+  },
 ];
-
