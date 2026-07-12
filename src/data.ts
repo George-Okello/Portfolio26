@@ -376,7 +376,7 @@ export const publications: Publication[] = [
   {
     id: "pub-multimodal-pipeline",
     title: "Multi-Modal Data Pipeline Integration on Cross-Platform Applications: A Comprehensive Literature Review",
-    authors: "Dr. Hema Latha Krishna (APU), George O. Ouma (The ResourceEdge)",
+    authors: "George O. Ouma",
     status: "In Preparation",
     summary: "A systematic review exploring the standard engineering patterns, latency-minimization protocols, and cross-platform architectures used to integrate multi-modal sensor and data streams.",
     link: ""
@@ -384,7 +384,7 @@ export const publications: Publication[] = [
   {
     id: "pub-neurosymbolic-ai",
     title: "Neuro-Symbolic AI for Verifiable and Ethical Reasoning in Critical Societal Applications: A Systematic Literature Review",
-    authors: "George O. Ouma (The ResourceEdge)",
+    authors: "George O. Ouma",
     status: "In Preparation",
     summary: "An exploration into the fusion of neural-network learning architectures and symbolic logic frameworks, addressing verifiable correctness and compliance with ethical guidelines in high-stakes public systems.",
     link: ""
@@ -392,7 +392,7 @@ export const publications: Publication[] = [
   {
     id: "pub-social-hierarchies",
     title: "Computational Modelling of Social Hierarchies & Trust Dynamics Using Multiagent Reinforcement Learning",
-    authors: "George O. Ouma (The ResourceEdge)",
+    authors: "George O. Ouma",
     status: "In Preparation",
     summary: "Investigating the emergence of social hierarchies, cooperative strategies, and trust structures among autonomous learning agents in partially observable, competitive-cooperative tasks.",
     link: ""

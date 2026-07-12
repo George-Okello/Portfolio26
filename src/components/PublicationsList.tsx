@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { publications, projects } from "../data";
-import { BookOpen, ChevronDown, ChevronUp, ExternalLink, Clock } from "lucide-react";
+import { BookOpen, ChevronDown, ChevronUp, ExternalLink, Clock, Database, ArrowRight } from "lucide-react";
 import { Publication } from "../types";
 import { motion } from "motion/react";
 
@@ -24,6 +24,7 @@ function PublicationCard({ pub, isExpanded, toggleExpand, isDark, index }: { pub
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -8, rotateX: 2, rotateY: -2, scale: 1.01 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
       style={{ perspective: "1000px" }}
@@ -34,7 +35,7 @@ function PublicationCard({ pub, isExpanded, toggleExpand, isDark, index }: { pub
           transformStyle: "preserve-3d",
           transform: isExpanded ? "rotateX(2deg) rotateY(-2deg) scale(1.02)" : "rotateX(0deg) rotateY(0deg) scale(1)"
         }}
-        className={`p-6 border transition-all duration-500 cursor-pointer hover:-translate-y-2 hover:rotate-x-2 hover:-rotate-y-2 hover:shadow-2xl ${
+        className={`p-6 border transition-all duration-500 cursor-pointer hover:shadow-2xl ${
           isDark
             ? "border-white/10 hover:border-white/30 bg-[#1A1A1A] hover:bg-[#222]"
             : "border-slate-200 border-b-[3px] border-b-slate-300/70 hover:border-b-slate-400 bg-white shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_-4px_rgba(0,0,0,0.1)]"
@@ -104,6 +105,50 @@ function PublicationCard({ pub, isExpanded, toggleExpand, isDark, index }: { pub
         )}
       </div>
     </motion.div>
+  );
+}
+
+
+function NeuralNetworkButton({ href, isDark }: { href: string; isDark: boolean }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`group relative inline-flex items-center justify-center px-8 py-4 font-mono text-[10px] uppercase tracking-widest font-semibold overflow-hidden border transition-all duration-500 ${
+        isDark 
+          ? "border-emerald-500/40 text-emerald-400 hover:text-emerald-300 hover:border-emerald-400" 
+          : "border-emerald-600/50 text-emerald-800 hover:text-emerald-900 bg-white hover:border-emerald-600 shadow-sm"
+      }`}
+    >
+      {/* Neural nodes and connecting lines effect */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+        {/* Nodes */}
+        <div className={`absolute top-2 left-2 w-1.5 h-1.5 rounded-full ${isDark ? "bg-emerald-400" : "bg-emerald-600"}`}></div>
+        <div className={`absolute bottom-2 left-6 w-1 h-1 rounded-full ${isDark ? "bg-emerald-400" : "bg-emerald-600"}`}></div>
+        <div className={`absolute top-3 right-8 w-1 h-1 rounded-full ${isDark ? "bg-emerald-400" : "bg-emerald-600"}`}></div>
+        <div className={`absolute bottom-2 right-2 w-1.5 h-1.5 rounded-full ${isDark ? "bg-emerald-400" : "bg-emerald-600"}`}></div>
+        <div className={`absolute top-1/2 left-1/2 w-1 h-1 rounded-full ${isDark ? "bg-emerald-400" : "bg-emerald-600"}`}></div>
+        
+        {/* Lines */}
+        <div className={`absolute top-2.5 left-2.5 w-4 h-[1px] origin-top-left rotate-45 ${isDark ? "bg-emerald-500/50" : "bg-emerald-600/30"}`}></div>
+        <div className={`absolute bottom-2 left-6 w-10 h-[1px] origin-bottom-left -rotate-12 ${isDark ? "bg-emerald-500/50" : "bg-emerald-600/30"}`}></div>
+        <div className={`absolute top-3 right-8 w-6 h-[1px] origin-top-right rotate-45 ${isDark ? "bg-emerald-500/50" : "bg-emerald-600/30"}`}></div>
+        <div className={`absolute bottom-2 right-2 w-6 h-[1px] origin-bottom-right -rotate-12 ${isDark ? "bg-emerald-500/50" : "bg-emerald-600/30"}`}></div>
+        <div className={`absolute top-1/2 left-1/2 w-8 h-[1px] origin-center -translate-x-1/2 -translate-y-1/2 rotate-12 ${isDark ? "bg-emerald-500/50" : "bg-emerald-600/30"}`}></div>
+      </div>
+      
+      {/* Glow effect */}
+      <div className={`absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out ${
+        isDark ? "bg-emerald-500/10" : "bg-emerald-100/60"
+      }`} />
+      
+      <span className="relative flex items-center gap-3 z-10">
+        <Database className="w-4 h-4" />
+        Explore Kaggle Notebooks
+        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+      </span>
+    </a>
   );
 }
 
@@ -225,13 +270,14 @@ export default function PublicationsList({ theme }: PublicationsListProps) {
                   key={p.id} 
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ y: -8, rotateX: 2, rotateY: -2, scale: 1.01 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.4, delay: idx * 0.1 }}
                   style={{ perspective: "1000px" }}
                 >
                   <div
                     style={{ transformStyle: "preserve-3d" }}
-                    className={`p-8 border flex flex-col justify-between transition-all duration-500 hover:-translate-y-2 hover:rotate-x-2 hover:rotate-y-2 hover:shadow-2xl h-full ${
+                    className={`p-8 border flex flex-col justify-between transition-all duration-500 hover:shadow-2xl h-full ${
                       isDark
                         ? "border-white/10 hover:border-white/30 bg-[#1A1A1A] hover:bg-[#222]"
                         : "border-slate-200 border-b-[3px] border-b-slate-300/70 hover:border-b-slate-400 bg-white shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_30px_-4px_rgba(0,0,0,0.1)]"
@@ -298,7 +344,47 @@ export default function PublicationsList({ theme }: PublicationsListProps) {
           </div>
         )}
 
+
+        {/* Kaggle Creative Banner */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className={`mt-16 md:col-span-2 relative overflow-hidden p-8 md:p-12 border ${
+            isDark 
+              ? "border-emerald-500/20 bg-gradient-to-r from-emerald-500/10 to-transparent" 
+              : "border-emerald-500/30 bg-gradient-to-r from-emerald-50 to-transparent"
+          }`}
+        >
+          <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
+            <div className="w-32 h-32 rounded-full border-4 border-dashed border-emerald-500 animate-[spin_20s_linear_infinite]" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-16 h-16 rounded-full border-2 border-emerald-500 animate-[spin_15s_linear_infinite_reverse]" />
+            </div>
+          </div>
+          
+          <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+            <div className="max-w-2xl">
+              <div className="flex items-center gap-3 mb-4">
+                <div className={`p-2 border rounded ${isDark ? "border-emerald-500/30 bg-emerald-500/10" : "border-emerald-300 bg-emerald-100/50"}`}>
+                  <Database className={`w-5 h-5 ${isDark ? "text-emerald-400" : "text-emerald-600"}`} />
+                </div>
+                <span className={`text-[10px] font-mono uppercase tracking-widest font-semibold ${isDark ? "text-emerald-400" : "text-emerald-700"}`}>
+                  More Explorations
+                </span>
+              </div>
+              <h4 className="text-2xl font-serif tracking-tight mb-2">Data Science & Competitions</h4>
+              <p className="text-sm font-light opacity-80 leading-relaxed">
+                While my selected major works are detailed above, I also actively experiment with datasets, build predictive models, and share notebooks on Kaggle. Explore my other exploratory data analyses and competition entries.
+              </p>
+            </div>
+            
+            <NeuralNetworkButton href="https://www.kaggle.com/georgeokello/" isDark={isDark} />
+          </div>
+        </motion.div>
       </div>
     </div>
   );
 }
+
