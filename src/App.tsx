@@ -32,6 +32,8 @@ const TechnicalSkills = lazy(() =>
 );
 
 import MagneticCursor from "./components/MagneticCursor";
+import TerminalOverlay from "./components/TerminalOverlay";
+
 import Loader from "./components/Loader";
 import trustImg from "./assets/images/computational_trust_magazine_1783364483351.jpg";
 import networkImg from "./assets/images/network_topology_magazine_1783392429129.jpg";
@@ -305,6 +307,7 @@ export default function App() {
       <SEO />
       <Grain />
       <ScrollProgress />
+      <TerminalOverlay isDark={isDark} />
       {isLoading && (
         <Loader onComplete={() => setIsLoading(false)} isDark={isDark} />
       )}

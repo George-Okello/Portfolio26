@@ -220,6 +220,8 @@ export default function PublicationsList({ theme }: PublicationsListProps) {
     "All",
     "Neuroscience",
     "AI & ML",
+    "Network Science",
+    "Cognitive Science",
     "Social Impact",
     "Publications",
   ];

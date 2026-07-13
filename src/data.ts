@@ -395,7 +395,7 @@ export const educations: Education[] = [
     degree: "Bachelor of Business Information Technology",
     school: "Strathmore University",
     location: "Nairobi, Kenya",
-    period: "",
+    period: "2020 - 2024",
     bullets: [
       "Double focus on Computer Science and Business Administration.",
       "Developed foundational knowledge in algorithms, data structures, and database management.",
@@ -413,7 +413,7 @@ export const educations: Education[] = [
     degree: "Master of Science in Artificial Intelligence",
     school: "Asia Pacific University (APU)",
     location: "Kuala Lumpur, Malaysia",
-    period: "",
+    period: "2024 - 2026",
     bullets: [
       "Specialized deeply in Advanced Machine Learning, Neuro-Symbolic AI, and Reinforcement Learning.",
       "Collaborated with leading research professors on EEG and cognitive modeling.",
@@ -431,7 +431,7 @@ export const educations: Education[] = [
     degree: "Ph.D. in Network Science",
     school: "Central European University (CEU)",
     location: "Vienna, Austria",
-    period: "",
+    period: "Sep 2026 - Present",
     bullets: [
       "Focusing on the intersection of network science, artificial intelligence, and complex systems.",
       "Investigating the structural properties and dynamics of complex networks in multi-agent systems and cognitive architectures.",
