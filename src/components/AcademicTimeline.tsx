@@ -267,7 +267,7 @@ export default function AcademicTimeline({ theme }: AcademicTimelineProps) {
               key={bIdx}
               className="text-sm font-light leading-relaxed opacity-80 flex items-start gap-3"
             >
-              <span className="opacity-50 mt-1 shrink-0 text-current">—</span>
+              <span className="opacity-50 mt-1 shrink-0 text-current">-</span>
               <span>{bullet}</span>
             </li>
           ))}

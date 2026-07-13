@@ -410,7 +410,7 @@ export default function PublicationsList({ theme }: PublicationsListProps) {
                             key={idx}
                             className="flex items-start gap-2 text-[11px] opacity-70 leading-normal"
                           >
-                            <span className="opacity-50">—</span>
+                            <span className="opacity-50">-</span>
                             <span>{detail}</span>
                           </li>
                         ))}

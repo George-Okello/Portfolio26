@@ -42,6 +42,17 @@ import rlApplicationsImg from "./assets/images/rl_applications_magazine_17833924
 
 import SEO from "./components/SEO";
 
+function Grain() {
+  return (
+    <div
+      className="pointer-events-none fixed inset-0 z-50 h-full w-full mix-blend-overlay opacity-[0.04]"
+      style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+      }}
+    />
+  );
+}
+
 const darkPublications = [
   {
     image: trustImg,
@@ -96,6 +107,106 @@ function SectionDivider({ isDark }: { isDark: boolean }) {
         transition={{ duration: 1.2, ease: "easeInOut", delay: 0.2 }}
         className={`h-px w-2/3 max-w-3xl ${isDark ? "bg-gradient-to-r from-transparent via-white/20 to-transparent" : "bg-gradient-to-r from-transparent via-black/20 to-transparent"}`}
       />
+    </motion.div>
+  );
+}
+
+function ScrollProgress() {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
+  return (
+    <motion.div
+      className="fixed top-0 left-0 right-0 h-[2px] origin-left bg-gradient-to-r from-orange-500 to-amber-300 z-[100]"
+      style={{ scaleX }}
+    />
+  );
+}
+
+const TITLES = ["RESEARCHER", "AI & MLOPS\nENGINEER"];
+
+function OscillatingTitle() {
+  const [index, setIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % TITLES.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const lines = TITLES[index].split("\n");
+
+  return (
+    <div className="relative inline-flex overflow-hidden items-center text-[clamp(1.25rem,3.5vw+0.5rem,4rem)] font-light opacity-70 leading-[0.95] tracking-tight py-2 -my-2 pr-4 -mr-4">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -30 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          className="flex flex-col items-start pr-2"
+        >
+          {lines.map((line, i) => (
+            <span key={i} className="whitespace-nowrap">
+              {line}
+            </span>
+          ))}
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function NavLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      className="group relative py-2 opacity-60 hover:opacity-100 transition-opacity"
+    >
+      {children}
+      <span className="absolute bottom-0 left-0 w-full h-[1px] bg-current origin-right scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100 group-hover:origin-left" />
+    </a>
+  );
+}
+
+function MagneticWrapper({ children }: { children: React.ReactElement }) {
+  const ref = React.useRef<HTMLDivElement>(null);
+  const [position, setPosition] = React.useState({ x: 0, y: 0 });
+
+  const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
+    const { clientX, clientY } = e;
+    const { height, width, left, top } = ref.current!.getBoundingClientRect();
+    const middleX = clientX - (left + width / 2);
+    const middleY = clientY - (top + height / 2);
+    setPosition({ x: middleX * 0.2, y: middleY * 0.2 });
+  };
+
+  const reset = () => {
+    setPosition({ x: 0, y: 0 });
+  };
+
+  const { x, y } = position;
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouse}
+      onMouseLeave={reset}
+      animate={{ x, y }}
+      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+    >
+      {children}
     </motion.div>
   );
 }
@@ -192,6 +303,8 @@ export default function App() {
   return (
     <>
       <SEO />
+      <Grain />
+      <ScrollProgress />
       {isLoading && (
         <Loader onComplete={() => setIsLoading(false)} isDark={isDark} />
       )}
@@ -238,13 +351,9 @@ export default function App() {
                 { label: "Chronicle", href: "#chronicle" },
                 { label: "Creative", href: "#creative" },
               ].map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="hover:opacity-70 transition-opacity"
-                >
+                <NavLink key={link.label} href={link.href}>
                   {link.label}
-                </a>
+                </NavLink>
               ))}
             </nav>
 
@@ -380,11 +489,11 @@ export default function App() {
                 <h1 className="text-6xl md:text-[140px] font-bold leading-[0.82] tracking-[-0.04em] uppercase mb-10">
                   G.OKELLO
                   <br />
-                  <span className="ml-12 md:ml-20 flex items-center text-4xl md:text-[80px]">
+                  <span className="ml-12 md:ml-20 flex items-center pt-2 text-[clamp(2rem,5vw,5rem)]">
                     <span
                       className={`hidden md:block w-32 h-[1px] mr-8 ${isDark ? "bg-white/60 backdrop-blur-md" : "bg-[#121212]"}`}
                     ></span>
-                    RESEARCHER
+                    <OscillatingTitle />
                   </span>
                 </h1>
 
@@ -477,18 +586,22 @@ export default function App() {
                 transition={{ duration: 0.6, delay: 0.25 }}
                 className="flex flex-wrap items-center gap-4 pt-12"
               >
-                <a
+                <motion.a
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   href="#sandbox"
                   className={`px-6 py-3 border rounded-full text-[10px] uppercase tracking-widest transition-all ${
                     isDark
-                      ? "border-[#F7F7F7] hover:bg-white/60 backdrop-blur-md hover:text-[#121212]"
+                      ? "border-[#F7F7F7] hover:bg-[#F7F7F7] hover:text-[#0B0F19]"
                       : "border-[#121212] hover:bg-[#121212] hover:text-[#F7F7F7]"
                   }`}
                   id="hero-sandbox-cta"
                 >
                   Launch Sandbox Lab
-                </a>
-                <a
+                </motion.a>
+                <motion.a
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   href="#portfolio"
                   className={`px-6 py-3 border rounded-full text-[10px] uppercase tracking-widest transition-all ${
                     isDark
@@ -498,7 +611,7 @@ export default function App() {
                   id="hero-portfolio-cta"
                 >
                   View Selected Papers
-                </a>
+                </motion.a>
               </motion.div>
             </div>
 
@@ -889,10 +1002,11 @@ export default function App() {
                   href="https://georgyokesh112.artstation.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-1.5 text-xs font-medium hover:opacity-70 transition-opacity"
+                  className="group relative flex items-center gap-1.5 text-xs font-medium opacity-80 hover:opacity-100 transition-opacity py-1"
                 >
                   ArtStation
                   <ExternalLink className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
+                  <span className="absolute bottom-0 left-0 w-full h-[1px] bg-current origin-right scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100 group-hover:origin-left" />
                 </a>
                 <div className="flex items-center gap-1.5 text-xs font-medium opacity-80">
                   <MapPin className="w-3 h-3 opacity-60" />
@@ -906,20 +1020,30 @@ export default function App() {
         {/* Back to Top Button */}
         <AnimatePresence>
           {showBackToTop && (
-            <motion.button
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className={`fixed bottom-8 right-8 z-50 p-3 rounded-full shadow-lg border transition-colors ${
-                isDark
-                  ? "bg-slate-900 border-slate-700 text-white hover:bg-slate-800"
-                  : "bg-white border-slate-200 text-slate-900 hover:bg-slate-50"
-              }`}
-              aria-label="Back to top"
+              className="fixed bottom-8 right-8 z-50"
             >
-              <ArrowUp className="w-5 h-5" />
-            </motion.button>
+              <MagneticWrapper>
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() =>
+                    window.scrollTo({ top: 0, behavior: "smooth" })
+                  }
+                  className={`p-3 rounded-full shadow-lg border transition-colors ${
+                    isDark
+                      ? "bg-[#0B0F19] border-white/20 text-white hover:bg-white hover:text-black"
+                      : "bg-[#FAFAF9] border-black/20 text-black hover:bg-black hover:text-white"
+                  }`}
+                  aria-label="Back to top"
+                >
+                  <ArrowUp className="w-5 h-5" />
+                </motion.button>
+              </MagneticWrapper>
+            </motion.div>
           )}
         </AnimatePresence>
       </div>

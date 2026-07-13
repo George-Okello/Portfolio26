@@ -16,7 +16,7 @@ export const personalInfo = {
     { name: "French", level: "Basic" },
     // { name: "German", level: "Elementary" }
   ],
-  bio: "Committed to developing computational models that bridge artificial intelligence, network science, and cognitive neuroscience to understand complex brain functions, multi-agent social interactions, and enhance human-computer interaction.",
+  bio: "I develop computational models that bridge artificial intelligence, network science, and cognitive neuroscience. My goal is to understand complex brain functions and multi-agent social interactions, and to improve human-computer interaction.",
   researchInterests: [
     "Network Science",
     "Computational Neuroscience",
@@ -31,13 +31,42 @@ export const personalInfo = {
 
 export const projects: Project[] = [
   {
+    id: "thesis-msc-marl",
+    title: "Computational Modelling of Social Hierarchies & Trust Dynamics",
+    category: "AI & ML",
+    summary:
+      "I developed a computational model integrating hierarchy and trust dynamics in multi-agent reinforcement learning.",
+    description:
+      "I investigated how social hierarchies and trust patterns co-evolve in learning agents' societies. I simulated environments based on real-world datasets (Bitcoin OTC, Stack Overflow) to uncover the architectural conditions necessary for hierarchy formation.",
+    metrics: [
+      { label: "Institution", value: "Asia Pacific University (APU)" },
+      { label: "Key Finding", value: "Logarithmic Status Growth" },
+    ],
+    details: [
+      "Designed a MARL framework where hierarchies and trust endogenously form from repeated agent interactions.",
+      "Identified critical architectural ingredients: persistent status accumulation, logarithmic status growth, and network structural constraints.",
+      "Conducted extensive ablation studies demonstrating that network saturation suppresses hierarchy formation.",
+      "Validated computational models against empirical data from the Bitcoin OTC trust network and Stack Overflow expertise network.",
+    ],
+    tech: [
+      "Python",
+      "Reinforcement Learning",
+      "Q-Learning",
+      "NetworkX",
+      "Pandas",
+      "NumPy",
+    ],
+    visualType: "agents",
+  },
+
+  {
     id: "eeg-load",
     title: "EEG-Based Cognitive Load Classification",
     category: "Neuroscience",
     summary:
-      "Real-time cognitive state estimation using lightweight Transformer architectures.",
+      "I built real-time cognitive state estimation models using lightweight Transformer architectures.",
     description:
-      "Developed lightweight Transformer architectures for real-time cognitive state estimation using the SEED-VIG dataset, outperforming classic CNN and LSTM baselines.",
+      "I designed and developed lightweight Transformer models to estimate cognitive states in real time using the SEED-VIG dataset. These models outperformed classic CNN and LSTM baselines.",
     metrics: [
       { label: "Classification Accuracy", value: "79%" },
       { label: "Explainability Metric", value: "Grad-CAM/Attention" },
@@ -62,9 +91,9 @@ export const projects: Project[] = [
     title: "Bilingual Language Switching Dynamics",
     category: "Neuroscience",
     summary:
-      "Simulating Anterior Cingulate Cortex control costs during English-Spanish code-switching.",
+      "I simulated Anterior Cingulate Cortex control costs during English-Spanish code-switching.",
     description:
-      "Investigated neural mechanisms underlying code-switching using multilingual BERT representations on the UN Parallel Corpus to model cognitive control trajectories.",
+      "I investigated the neural mechanisms behind code-switching using multilingual BERT representations. By analyzing the UN Parallel Corpus, I modeled cognitive control trajectories.",
     metrics: [
       { label: "Data Source", value: "UN Parallel Corpus" },
       { label: "Target Region", value: "Simulated ACC (sACC)" },
@@ -89,9 +118,9 @@ export const projects: Project[] = [
     title: "Reinforcement Learning Under Noisy Observations",
     category: "AI & ML",
     summary:
-      "LSTM-DQN variants evaluated in memory-constrained visual N-back paradigm tasks.",
+      "I evaluated LSTM-DQN variants in memory-constrained visual N-back paradigm tasks.",
     description:
-      "Evaluated robustness of deep Q-network (DQN) variants in a modified CartPole environment with noisy visual feedback to understand temporal credit assignment.",
+      "I tested the robustness of deep Q-network (DQN) variants in a modified CartPole environment with noisy visual feedback. This helped me better understand temporal credit assignment.",
     metrics: [
       { label: "Statistical Significance", value: "p = 0.0034" },
       { label: "Effect Size (Cohen's d)", value: "-0.422" },
@@ -116,9 +145,9 @@ export const projects: Project[] = [
     title: "When AI Thinks Like Humans: Cognitive Biases in RL",
     category: "Cognitive Science",
     summary:
-      "Simulating human cognitive biases in reinforcement learning agents using a multi-armed bandit setup.",
+      "I simulated human cognitive biases in reinforcement learning agents using a multi-armed bandit setup.",
     description:
-      "Developed and evaluated RL agents exhibiting classic human cognitive biases (Loss Aversion, Anchoring, Confirmation, Optimism) within a multi-armed bandit problem to understand how irrational heuristics affect decision-making.",
+      "I built and evaluated RL agents that show classic human cognitive biases like Loss Aversion, Anchoring, Confirmation, and Optimism. Using a multi-armed bandit problem, I studied how these irrational heuristics affect decision-making.",
     metrics: [
       { label: "Simulated Biases", value: "4 Distinct Types" },
       { label: "Environment", value: "Multi-Armed Bandit" },
@@ -143,9 +172,9 @@ export const projects: Project[] = [
     title: "Agricultural AI Chatbot & Advisor",
     category: "Social Impact",
     summary:
-      "Climate-adaptive NLP system providing localized weather and agricultural guidance to Kenyan farmers.",
+      "I built a climate-adaptive NLP system that provides localized weather and agricultural guidance to Kenyan farmers.",
     description:
-      "Designed and implemented an NLP-driven conversational agent to assist Kenyan smallholders, backed by a Mozilla Foundation Research Grant.",
+      "With support from a Mozilla Foundation Research Grant, I designed and implemented an NLP-driven conversational agent to assist Kenyan smallholder farmers.",
     metrics: [
       { label: "Funding Body", value: "Mozilla Foundation" },
       { label: "Impact Target", value: "Kenyan Smallholders" },
@@ -170,9 +199,9 @@ export const projects: Project[] = [
     title: "Interpretable Medical AI",
     category: "AI & ML",
     summary:
-      "Explainable decision trees for reversible cardiac condition detection using LIME and SHAP.",
+      "I created explainable decision trees for detecting reversible cardiac conditions using LIME and SHAP.",
     description:
-      "Developed clear decision-support models for cardiac diagnostic classification, achieving high performance while maintaining complete clinical transparency.",
+      "I developed clear decision-support models for cardiac diagnostic classification. These models achieve high performance while remaining completely transparent to clinicians.",
     metrics: [
       { label: "Diagnostic Accuracy", value: "83%" },
       { label: "Explainability Tools", value: "LIME / SHAP" },
@@ -197,9 +226,9 @@ export const projects: Project[] = [
     title: "Network Dynamics in Multi-Agent Systems",
     category: "Network Science",
     summary:
-      "Graph neural networks for analyzing the structural properties and information flow in multi-agent environments.",
+      "I used graph neural networks to analyze the structural properties and information flow in multi-agent environments.",
     description:
-      "Investigated how network topology influences collective behavior and decision-making in artificial multi-agent systems, using Graph Neural Networks (GNNs) to model communication bottlenecks.",
+      "I investigated how network topology influences collective behavior and decision-making in artificial multi-agent systems. I used Graph Neural Networks to model communication bottlenecks.",
     metrics: [
       { label: "Topology Analyzed", value: "Small-World & Scale-Free" },
       { label: "Information Transfer", value: "+34% Efficiency" },
@@ -392,9 +421,9 @@ export const educations: Education[] = [
     ],
     thesis: {
       title:
-        "Exploring computational approaches to understanding collaborative behaviors between intelligent agents",
+        "Computational Modelling of Social Hierarchies & Trust Dynamics Using Multiagent Reinforcement Learning",
       description:
-        "Developed models that investigated how social hierarchies, trust, and communication emerge in multi-agent reinforcement learning (MARL) structures.",
+        "Developed a comprehensive framework for understanding how social structures, specifically hierarchies and trust, emerge and co-evolve in multi-agent reinforcement learning (MARL) systems.",
     },
   },
   {
@@ -439,38 +468,39 @@ export const publications: Publication[] = [
     status: "Under Review",
     type: "Conference",
     summary:
-      "A framework combining a Version Memory Buffer, Hessian-approximated drift correction, and two-parameter polynomial damping to address the infrastructure exclusion problem in federated learning across sub-Saharan Africa. Submitted to Deep Learning Indaba 2026.",
+      "I designed a framework that combines a Version Memory Buffer, Hessian-approximated drift correction, and two-parameter polynomial damping to address the infrastructure exclusion problem in federated learning across sub-Saharan Africa. This work has been submitted to Deep Learning Indaba 2026.",
     link: "",
   },
   {
     id: "pub-multimodal-pipeline",
     title:
-      "Multi-Modal Data Pipeline Integration on Cross-Platform Applications: A Comprehensive Literature Review",
+      "Fusion in a Vacuum: Why Multimodal Machine Learning Needs Constraint-Aware Evaluation",
     authors: "George O. Ouma",
-    status: "In Preparation",
+    status: "Published",
     summary:
-      "A systematic review exploring the standard engineering patterns, latency-minimization protocols, and cross-platform architectures used to integrate multi-modal sensor and data streams.",
-    link: "",
+      "This paper highlights the methodological gap between multimodal fusion research and deployment engineering. I proposed constraint-aware evaluation (measuring accuracy as a function of deployment constraints) to bridge this divide.",
+    link: "https://doi.org/10.5281/zenodo.21331051",
   },
   {
     id: "pub-neurosymbolic-ai",
     title:
-      "Neuro-Symbolic AI for Verifiable and Ethical Reasoning in Critical Societal Applications: A Systematic Literature Review",
+      "Neuro-Symbolic AI for Verifiable and Ethical Reasoning in Critical Societal Applications: A Literature Review",
     authors: "George O. Ouma",
-    status: "In Preparation",
+    status: "Published",
     summary:
-      "An exploration into the fusion of neural-network learning architectures and symbolic logic frameworks, addressing verifiable correctness and compliance with ethical guidelines in high-stakes public systems.",
-    link: "",
+      "I explored the fusion of neural-network learning architectures and symbolic logic frameworks. This paper addresses verifiable correctness and compliance with ethical guidelines in high-stakes public systems.",
+    link: "https://doi.org/10.5281/zenodo.21324933",
   },
   {
-    id: "pub-social-hierarchies",
+    id: "pub-llm-bano",
     title:
-      "Computational Modelling of Social Hierarchies & Trust Dynamics Using Multiagent Reinforcement Learning",
+      "Leveraging Large Language Models to Preserve Indigenous Games: A Case Study of a Chatbot for the Kenyan Game Bano",
     authors: "George O. Ouma",
-    status: "In Preparation",
+    status: "Published",
+    type: "Preprint",
     summary:
-      "Investigating the emergence of social hierarchies, cooperative strategies, and trust structures among autonomous learning agents in partially observable, competitive-cooperative tasks.",
-    link: "",
+      "I examined the application of Large Language Models (LLMs) to indigenous cultural preservation using the Bano traditional board game of Kenya. I developed and evaluated Simba, an LLM-based chatbot designed to preserve knowledge of Bano gameplay mechanics and cultural context.",
+    link: "https://doi.org/10.5281/zenodo.21337996",
   },
 ];
 
