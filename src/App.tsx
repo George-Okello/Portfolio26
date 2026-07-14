@@ -107,7 +107,7 @@ function SectionDivider({ isDark }: { isDark: boolean }) {
       className="w-full flex justify-center py-8"
       initial={{ opacity: 0, filter: "blur(5px)" }}
       whileInView={{ opacity: 1, filter: "blur(0px)" }}
-      viewport={{ once: false, amount: 0.1, margin: "-10%" }}
+      viewport={{ once: true, amount: 0, margin: "0px" }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <motion.div
@@ -711,7 +711,7 @@ export default function App() {
           className="py-24 relative mt-12 overflow-hidden"
           initial={{ opacity: 0, y: 80, scale: 0.95, filter: "blur(10px)" }}
           whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-          viewport={{ once: false, amount: 0.1, margin: "-10%" }}
+          viewport={{ once: true, amount: 0, margin: "0px" }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
           {/* Parallax Background Element */}
@@ -837,7 +837,7 @@ export default function App() {
           className={`py-24 relative overflow-hidden`}
           initial={{ opacity: 0, y: 60, filter: "blur(10px) brightness(0.8)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px) brightness(1)" }}
-          viewport={{ once: false, amount: 0.1, margin: "-10%" }}
+          viewport={{ once: true, amount: 0, margin: "0px" }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
           {/* Parallax Background Element */}
@@ -876,7 +876,7 @@ export default function App() {
           className={`relative`}
           initial={{ opacity: 0, filter: "blur(10px)" }}
           whileInView={{ opacity: 1, filter: "blur(0px)" }}
-          viewport={{ once: false, amount: 0.1, margin: "-10%" }}
+          viewport={{ once: true, amount: 0, margin: "0px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <Suspense
@@ -898,7 +898,7 @@ export default function App() {
           className={`py-24 relative`}
           initial={{ opacity: 0, x: -60, filter: "blur(10px)" }}
           whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-          viewport={{ once: false, amount: 0.1, margin: "-10%" }}
+          viewport={{ once: true, amount: 0, margin: "0px" }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="px-6 md:px-12 w-full space-y-12">
@@ -977,7 +977,7 @@ export default function App() {
           className={`mt-8 pt-16 pb-12 relative`}
           initial={{ opacity: 0, y: 60, scale: 0.95, filter: "blur(10px)" }}
           whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-          viewport={{ once: false, amount: 0.1, margin: "-10%" }}
+          viewport={{ once: true, amount: 0, margin: "0px" }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="px-6 md:px-12 w-full">
