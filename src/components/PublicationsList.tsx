@@ -42,11 +42,15 @@ function PublicationCard({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -8, rotateX: 2, rotateY: -2, scale: 1.01 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
+      initial={{ opacity: 0, y: 40, filter: "blur(8px)", scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
+      whileHover={{ y: -8, rotateX: 2, rotateY: -2, scale: 1.02 }}
+      viewport={{ once: false, amount: 0.2, margin: "-50px" }}
+      transition={{
+        duration: 0.7,
+        delay: index * 0.15,
+        ease: [0.21, 0.47, 0.32, 0.98],
+      }}
       style={{ perspective: "1000px" }}
     >
       <div
@@ -338,11 +342,15 @@ export default function PublicationsList({ theme }: PublicationsListProps) {
               {filteredProjects.map((p, idx) => (
                 <motion.div
                   key={p.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ y: -8, rotateX: 2, rotateY: -2, scale: 1.01 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.4, delay: idx * 0.1 }}
+                  initial={{ opacity: 0, x: -40, filter: "blur(8px)" }}
+                  whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                  whileHover={{ y: -8, rotateX: 2, rotateY: -2, scale: 1.02 }}
+                  viewport={{ once: false, amount: 0.1, margin: "-50px" }}
+                  transition={{
+                    duration: 0.8,
+                    delay: idx * 0.15,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
                   style={{ perspective: "1000px" }}
                 >
                   <div
@@ -438,10 +446,10 @@ export default function PublicationsList({ theme }: PublicationsListProps) {
 
         {/* Kaggle Creative Banner */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 60, scale: 0.95, filter: "blur(10px)" }}
+          whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+          viewport={{ once: false, amount: 0.3, margin: "-50px" }}
+          transition={{ duration: 0.9, ease: [0.21, 0.47, 0.32, 0.98] }}
           className={`mt-16 md:col-span-2 relative overflow-hidden p-8 md:p-12 border ${
             isDark
               ? "border-emerald-500/20 bg-gradient-to-r from-emerald-500/10 to-transparent"

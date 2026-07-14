@@ -111,9 +111,14 @@ export default function AcademicTimeline({ theme }: AcademicTimelineProps) {
         <motion.div
           key={key}
           layout
-          initial={{ opacity: 0, y: 40, scale: 0.95 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, margin: "-50px" }}
+          initial={{
+            opacity: 0,
+            y: 80,
+            scale: 0.85,
+            filter: "brightness(0.5)",
+          }}
+          whileInView={{ opacity: 1, y: 0, scale: 1, filter: "brightness(1)" }}
+          viewport={{ once: false, amount: 0.2, margin: "-10%" }}
           exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
           transition={{
             duration: 0.6,
@@ -205,9 +210,9 @@ export default function AcademicTimeline({ theme }: AcademicTimelineProps) {
       <motion.div
         key={key}
         layout
-        initial={{ opacity: 0, y: 40, scale: 0.95 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: true, margin: "-50px" }}
+        initial={{ opacity: 0, x: 60, scale: 0.95, filter: "saturate(0)" }}
+        whileInView={{ opacity: 1, x: 0, scale: 1, filter: "saturate(1)" }}
+        viewport={{ once: false, amount: 0.2, margin: "-10%" }}
         exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
         transition={{
           duration: 0.6,
@@ -306,11 +311,11 @@ export default function AcademicTimeline({ theme }: AcademicTimelineProps) {
             <motion.div
               layout
               key={group.year}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: false, amount: 0.1, margin: "-10%" }}
               exit={{ opacity: 0, y: -20, transition: { duration: 0.2 } }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.9, ease: [0.21, 0.47, 0.32, 0.98] }}
               className="flex flex-col md:flex-row gap-8 md:gap-12 relative"
             >
               {/* Year Marker */}

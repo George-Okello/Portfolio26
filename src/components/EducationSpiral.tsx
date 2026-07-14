@@ -39,9 +39,10 @@ export default function EducationSpiral({ theme }: EducationSpiralProps) {
       <div className="relative z-10">
         <div className="text-center mb-16 md:mb-24">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40, scale: 0.9, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+            viewport={{ once: false, amount: 0.2, margin: "-10%" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="inline-flex items-center justify-center p-3 rounded-full mb-6 bg-orange-500/10 text-orange-600 dark:text-orange-400"
           >
             <Orbit className="w-6 h-6" />
@@ -67,10 +68,19 @@ export default function EducationSpiral({ theme }: EducationSpiralProps) {
                   opacity: 0,
                   x: offsetX,
                   y: 100,
-                  rotateZ: idx % 2 === 0 ? -3 : 3,
+                  rotateZ: idx % 2 === 0 ? -5 : 5,
+                  scale: 0.95,
+                  filter: "blur(8px)",
                 }}
-                whileInView={{ opacity: 1, x: 0, y: 0, rotateZ: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                  y: 0,
+                  rotateZ: 0,
+                  scale: 1,
+                  filter: "blur(0px)",
+                }}
+                viewport={{ once: false, amount: 0.2, margin: "-10%" }}
                 transition={{
                   duration: 0.8,
                   type: "spring",
@@ -156,10 +166,19 @@ export default function EducationSpiral({ theme }: EducationSpiralProps) {
             {certifications.map((cert, idx) => (
               <motion.div
                 key={cert.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                initial={{ opacity: 0, y: 60, scale: 0.9, filter: "blur(8px)" }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  filter: "blur(0px)",
+                }}
+                viewport={{ once: false, amount: 0.1, margin: "-10%" }}
+                transition={{
+                  duration: 0.8,
+                  ease: [0.16, 1, 0.3, 1],
+                  delay: idx * 0.15,
+                }}
                 className={`p-6 border flex flex-col gap-4 transition-colors ${
                   isDark
                     ? "bg-[#121212] border-white/5 hover:border-orange-500/30"

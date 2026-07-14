@@ -1,6 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence, useScroll, useSpring } from "motion/react";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "motion/react";
 import {
   Brain,
   Languages,
@@ -15,6 +21,8 @@ import {
   ArrowUp,
 } from "lucide-react";
 
+import { RevealWrapper } from "./components/RevealWrapper";
+import { RevealText } from "./components/RevealText";
 import { personalInfo } from "./data";
 import AmbientBackground from "./components/AmbientBackground";
 import ScrollParticles from "./components/ScrollParticles";
@@ -99,7 +107,7 @@ function SectionDivider({ isDark }: { isDark: boolean }) {
       className="w-full flex justify-center py-8"
       initial={{ opacity: 0, filter: "blur(5px)" }}
       whileInView={{ opacity: 1, filter: "blur(0px)" }}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: false, amount: 0.1, margin: "-10%" }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <motion.div
@@ -321,7 +329,12 @@ export default function App() {
         <ScrollParticles isDark={isDark} />
 
         {/* 1. HEADER & CAPSULE NAVIGATION */}
-        <header className="fixed top-0 left-0 w-full z-50 px-6 md:px-12 pt-6">
+        <motion.header
+          initial={{ opacity: 0, y: -40, filter: "blur(10px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+          className="fixed top-0 left-0 w-full z-50 px-6 md:px-12 pt-6"
+        >
           {/* Scroll Progress Bar */}
           <motion.div
             className={`absolute top-0 left-0 right-0 h-1 z-50 ${isDark ? "bg-white/60 backdrop-blur-md" : "bg-[#121212]"}`}
@@ -459,7 +472,7 @@ export default function App() {
               </motion.div>
             )}
           </AnimatePresence>
-        </header>
+        </motion.header>
 
         {/* 2. DYNAMIC HERO SECTION */}
         <section
@@ -483,9 +496,18 @@ export default function App() {
           <div className="px-6 md:px-12 w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-8">
             <div className="lg:col-span-8 space-y-6">
               <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+                initial={{
+                  opacity: 0,
+                  y: 60,
+                  scale: 0.95,
+                  filter: "blur(15px)",
+                }}
+                animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                transition={{
+                  duration: 1.5,
+                  ease: [0.16, 1, 0.3, 1],
+                  delay: 0.2,
+                }}
                 className="space-y-4"
               >
                 {/* Display name */}
@@ -686,18 +708,23 @@ export default function App() {
         {/* 3. ABOUT SECTION & RESEARCH INTERESTS */}
         <motion.section
           id="about"
-          className="py-24 relative mt-12"
-          initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="py-24 relative mt-12 overflow-hidden"
+          initial={{ opacity: 0, y: 80, scale: 0.95, filter: "blur(10px)" }}
+          whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+          viewport={{ once: false, amount: 0.1, margin: "-10%" }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="px-6 md:px-12 w-full">
+          {/* Parallax Background Element */}
+          <motion.div
+            className={`absolute top-0 right-0 w-[800px] h-[800px] rounded-full blur-[100px] opacity-20 pointer-events-none ${isDark ? "bg-orange-500/20" : "bg-orange-300/30"}`}
+            style={{ y: useTransform(scrollYProgress, [0, 1], [-200, 200]) }}
+          />
+          <div className="px-6 md:px-12 w-full relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
               {/* Biography */}
-              <div className="lg:col-span-6 space-y-6">
+              <RevealWrapper className="lg:col-span-6 space-y-6">
                 <h2 className="text-4xl font-serif italic tracking-tight">
-                  Current Obsession
+                  <RevealText text="Current Obsession" />
                 </h2>
                 <p className="text-sm font-light opacity-90 leading-relaxed max-w-[400px]">
                   {personalInfo.bio}
@@ -720,10 +747,10 @@ export default function App() {
                     brain-computer interface (BCI) diagnostic pipelines.
                   </p>
                 </div>
-              </div>
+              </RevealWrapper>
 
               {/* Research interests capsules & languages */}
-              <div className="lg:col-span-6 space-y-12 flex flex-col justify-end">
+              <RevealWrapper className="lg:col-span-6 space-y-12 flex flex-col justify-end">
                 <div>
                   <h4 className="text-[10px] uppercase tracking-widest mb-6 opacity-70 italic">
                     Core Academic Domain Clusters
@@ -785,7 +812,7 @@ export default function App() {
                     ))}
                   </div>
                 </div>
-              </div>
+              </RevealWrapper>
             </div>
           </div>
         </motion.section>
@@ -793,34 +820,32 @@ export default function App() {
         <SectionDivider isDark={isDark} />
 
         {/* 4. COGNITIVE SANDBOX SECTION */}
-        <motion.section
-          id="sandbox"
-          className={`py-24 relative`}
-          initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
+        <section id="sandbox" className={`py-24 relative`}>
           <div className="px-6 md:px-12 w-full">
             <ResearchSandbox
               theme={theme}
               onTaskChange={(task) => setActiveCanvasTask(task)}
             />
           </div>
-        </motion.section>
+        </section>
 
         <SectionDivider isDark={isDark} />
 
         {/* 5. RESEARCH PORTFOLIO SECTION */}
         <motion.section
           id="portfolio"
-          className={`py-24 relative`}
-          initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          className={`py-24 relative overflow-hidden`}
+          initial={{ opacity: 0, y: 60, filter: "blur(10px) brightness(0.8)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px) brightness(1)" }}
+          viewport={{ once: false, amount: 0.1, margin: "-10%" }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="px-6 md:px-12 w-full space-y-12">
+          {/* Parallax Background Element */}
+          <motion.div
+            className={`absolute top-[20%] left-[-10%] w-[600px] h-[600px] rounded-full blur-[100px] opacity-10 pointer-events-none ${isDark ? "bg-blue-500/20" : "bg-blue-300/30"}`}
+            style={{ y: useTransform(scrollYProgress, [0, 1], [300, -300]) }}
+          />
+          <div className="px-6 md:px-12 w-full space-y-12 relative z-10">
             <div className="flex flex-col">
               <span className="text-[11px] uppercase tracking-widest opacity-60 italic mb-2">
                 01 / Selected Works
@@ -851,7 +876,7 @@ export default function App() {
           className={`relative`}
           initial={{ opacity: 0, filter: "blur(10px)" }}
           whileInView={{ opacity: 1, filter: "blur(0px)" }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: false, amount: 0.1, margin: "-10%" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <Suspense
@@ -871,10 +896,10 @@ export default function App() {
         <motion.section
           id="chronicle"
           className={`py-24 relative`}
-          initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          initial={{ opacity: 0, x: -60, filter: "blur(10px)" }}
+          whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+          viewport={{ once: false, amount: 0.1, margin: "-10%" }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="px-6 md:px-12 w-full space-y-12">
             <div className="flex flex-col">
@@ -916,21 +941,14 @@ export default function App() {
         <SectionDivider isDark={isDark} />
 
         {/* 8. CREATIVE CORNER (GENERATIVE FLOCKING SIMULATOR) */}
-        <motion.section
-          id="creative"
-          className={`py-24 relative`}
-          initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
+        <section id="creative" className={`py-24 relative`}>
           <div className="px-6 md:px-12 w-full space-y-12">
             <div className="flex flex-col">
               <span className="text-[11px] uppercase tracking-widest opacity-60 italic mb-2">
                 04 / Current Obsession
               </span>
               <h2 className="text-4xl font-serif tracking-tight">
-                Fluid Systems Visualizer
+                <RevealText text="Fluid Systems Visualizer" />
               </h2>
               <p className="opacity-90 font-light max-w-2xl mt-4">
                 Exploring complex adaptive systems, cellular automata, and swarm
@@ -949,7 +967,7 @@ export default function App() {
               <GenerativeArt theme={theme} />
             </Suspense>
           </div>
-        </motion.section>
+        </section>
 
         <SectionDivider isDark={isDark} />
 
@@ -957,10 +975,10 @@ export default function App() {
         <motion.section
           id="contact"
           className={`mt-8 pt-16 pb-12 relative`}
-          initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          initial={{ opacity: 0, y: 60, scale: 0.95, filter: "blur(10px)" }}
+          whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+          viewport={{ once: false, amount: 0.1, margin: "-10%" }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="px-6 md:px-12 w-full">
             <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10 mb-20">
