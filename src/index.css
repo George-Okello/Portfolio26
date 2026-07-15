@@ -46,3 +46,25 @@ html.is-changing-theme * {
 .font-mono {
   @apply uppercase tracking-widest text-[10px];
 }
+
+/* Elegant Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.3);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(249, 115, 22, 0.6);
+}
+
+/* Custom Text Selection Highlight */
+::selection {
+  background: rgba(249, 115, 22, 0.25);
+  color: inherit;
+}

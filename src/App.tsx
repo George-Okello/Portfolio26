@@ -19,6 +19,7 @@ import {
   Menu,
   X,
   ArrowUp,
+  User,
 } from "lucide-react";
 
 import { RevealWrapper } from "./components/RevealWrapper";
@@ -51,6 +52,7 @@ import nlpReasoningImg from "./assets/images/nlp_reasoning_magazine_178339245826
 import rlApplicationsImg from "./assets/images/rl_applications_magazine_1783392472442.jpg";
 
 import SEO from "./components/SEO";
+import profileHeadshot from "./assets/images/Jul 15, 2026, 11_49_45 AM.png";
 
 function Grain() {
   return (
@@ -331,7 +333,7 @@ export default function App() {
         <Loader onComplete={() => setIsLoading(false)} isDark={isDark} />
       )}
       <div
-        className={`min-h-screen transition-colors duration-500 font-sans selection:bg-black/10 selection:text-current ${
+        className={`min-h-screen transition-colors duration-500 font-sans  ${
           isDark ? "bg-[#0B0F19] text-[#F7F7F7]" : "bg-[#F2F2F2] text-[#2D2D2D]"
         }`}
       >
@@ -346,11 +348,7 @@ export default function App() {
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
           className="fixed top-0 left-0 w-full z-50 px-6 md:px-12 pt-6"
         >
-          {/* Scroll Progress Bar */}
-          <motion.div
-            className={`absolute top-0 left-0 right-0 h-1 z-50 ${isDark ? "bg-white/60 backdrop-blur-md" : "bg-[#121212]"}`}
-            style={{ scaleX, transformOrigin: "0%" }}
-          />
+
           <div
             className={`relative z-50 mx-auto flex items-start justify-between transition-all duration-300 pb-6 border-b ${
               isDark ? "border-white/10" : "border-black/5"
@@ -731,9 +729,38 @@ export default function App() {
             style={{ y: useTransform(scrollYProgress, [0, 1], [-200, 200]) }}
           />
           <div className="px-6 md:px-12 w-full relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+              {/* Profile Image - Creative Section */}
+              <RevealWrapper className="lg:col-span-3 relative group max-w-xs mx-auto lg:mx-0">
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded shadow-2xl">
+                  {/* Glitch Overlay Effect */}
+                  <motion.div
+                    className={`absolute inset-0 mix-blend-overlay z-10 transition-opacity duration-700 ${isDark ? "bg-orange-500/20" : "bg-orange-600/10"} group-hover:opacity-0`}
+                  />
+                  <img
+                    src={profileHeadshot}
+                    alt={personalInfo.name}
+                    className="w-full h-full object-cover filter grayscale-[50%] contrast-125 opacity-90 transition-all duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:grayscale-0 group-hover:scale-[1.03] group-hover:contrast-100"
+                  />
+                  {/* Decorative Architectural Frame */}
+                  <div className={`absolute inset-4 border pointer-events-none transition-all duration-700 ${isDark ? 'border-white/20' : 'border-black/20'} translate-x-2 translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0 opacity-50 group-hover:opacity-100`} />
+                  
+                  {/* Scan Line Element */}
+                  <motion.div 
+                    className={`absolute left-0 right-0 h-[1px] ${isDark ? 'bg-orange-500/40' : 'bg-orange-600/30'}`}
+                    animate={{ top: ['0%', '100%', '0%'] }}
+                    transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
+                  />
+
+                  {/* Icon badge */}
+                  <div className={`absolute bottom-6 left-6 p-2 backdrop-blur-md rounded-full z-20 ${isDark ? 'bg-black/50 text-white/80' : 'bg-white/50 text-black/80'}`}>
+                    <User className="w-4 h-4 opacity-70" />
+                  </div>
+                </div>
+              </RevealWrapper>
+
               {/* Biography */}
-              <RevealWrapper className="lg:col-span-6 space-y-6">
+              <RevealWrapper className="lg:col-span-5 space-y-6">
                 <h2 className="text-4xl font-serif italic tracking-tight">
                   <RevealText text="Current Obsession" />
                 </h2>
@@ -761,7 +788,7 @@ export default function App() {
               </RevealWrapper>
 
               {/* Research interests capsules & languages */}
-              <RevealWrapper className="lg:col-span-6 space-y-12 flex flex-col justify-end">
+              <RevealWrapper className="lg:col-span-4 space-y-12 flex flex-col justify-center">
                 <div>
                   <h4 className="text-[10px] uppercase tracking-widest mb-6 opacity-70 italic">
                     Core Academic Domain Clusters
