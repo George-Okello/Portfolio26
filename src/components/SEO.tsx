@@ -11,12 +11,12 @@ interface SEOProps {
 }
 
 export default function SEO({
-  title = "George Okello | Computational Neuroscientist & AI Researcher",
-  description = "Portfolio of George Okello, exploring computational models that bridge artificial intelligence, network science, and cognitive neuroscience.",
+  title = "George Okello Ouma | Computational Neuroscientist & AI Researcher",
+  description = "Portfolio of George Okello Ouma, exploring computational models that bridge artificial intelligence, network science, and cognitive neuroscience.",
   image = "https://gokello.me/og-image.jpg", // placeholder if we don't have a real one, but we could use the profile picture if there was one
   url = "https://gokello.me/",
   type = "website",
-  name = "George Okello",
+  name = "George Okello Ouma",
   keywords = [
     "Computational Neuroscience",
     "AI Researcher",

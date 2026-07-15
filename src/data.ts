@@ -1,10 +1,10 @@
 import { Project, Experience, Education, Award, Publication } from "./types";
 
 export const personalInfo = {
-  name: "George Okello",
+  name: "George Okello Ouma",
   fullName: "George Okello Ouma",
   title: "Computational Neuroscientist & AI Researcher",
-  location: "Nairobi, Kenya 00100",
+  location: "Machakos, Kenya",
   phone: "+254706772057",
   email: "georgeokelloouma@gmail.com",
   website: "https://gokello.me/",
@@ -293,7 +293,7 @@ export const experiences: Experience[] = [
     id: "exp-strath-ds",
     role: "Data Science Fellow",
     company: "Strathmore University",
-    location: "Nairobi, Kenya",
+    location: "Machakos, Kenya",
     period: "Sep 2022 - Feb 2023",
     bullets: [
       "Conducted statistical analyses and developed complex visualizations to interpret institutional research outcomes.",
@@ -307,7 +307,7 @@ export const experiences: Experience[] = [
     id: "exp-strath-inst",
     role: "Instructor",
     company: "Strathmore University",
-    location: "Nairobi, Kenya",
+    location: "Machakos, Kenya",
     period: "Feb 2023 - Feb 2025",
     bullets: [
       "Delivered technical lectures and hands-on laboratory workshops for the Data Science Certificate program.",
@@ -321,7 +321,7 @@ export const experiences: Experience[] = [
     id: "exp-strath-bi",
     role: "Business Intelligence Analyst (ML/AI Engineer)",
     company: "Strathmore University",
-    location: "Nairobi, Kenya",
+    location: "Machakos, Kenya",
     period: "Feb 2023 - Feb 2025",
     bullets: [
       "Built and deployed scalable data pipelines extracting, transforming, and loading diverse corporate data streams.",
@@ -335,7 +335,7 @@ export const experiences: Experience[] = [
     id: "exp-re-pca",
     role: "People and Culture Analyst",
     company: "The ResourceEdge",
-    location: "Nairobi, Kenya",
+    location: "Machakos, Kenya",
     period: "Jan 2023 - Sep 2026",
     bullets: [
       "Assisted in Strategic Human Resource Management (SHRM) initiatives, applying people analytics models to team dynamics.",
@@ -362,7 +362,7 @@ export const experiences: Experience[] = [
     id: "exp-psc-support",
     role: "System Support Intern",
     company: "Parliamentary Service Commission",
-    location: "Nairobi, Kenya",
+    location: "Machakos, Kenya",
     period: "Mar 2021 - Jul 2021",
     bullets: [
       "Oversaw technical operations for live broadcasts of parliamentary sessions on YouTube, ensuring stable streams and perfect audio quality.",
@@ -377,7 +377,7 @@ export const experiences: Experience[] = [
     id: "exp-knls-vol",
     role: "Library Assistant (Volunteer)",
     company: "Kenya National Library Service (KNLS)",
-    location: "Nairobi, Kenya",
+    location: "Machakos, Kenya",
     period: "Jan 2020 - Mar 2020",
     bullets: [
       "Organized large library collections and updated digital catalog systems as part of an undergraduate community-service program.",
@@ -394,7 +394,7 @@ export const educations: Education[] = [
     id: "edu-strath-bbit",
     degree: "Bachelor of Business Information Technology",
     school: "Strathmore University",
-    location: "Nairobi, Kenya",
+    location: "Machakos, Kenya",
     period: "2020 - 2024",
     bullets: [
       "Double focus on Computer Science and Business Administration.",

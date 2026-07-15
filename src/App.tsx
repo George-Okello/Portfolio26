@@ -230,6 +230,17 @@ export default function App() {
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > window.innerHeight * 0.8);
     };
@@ -406,73 +417,73 @@ export default function App() {
               </button>
             </div>
           </div>
-
-          {/* Mobile menu dropdown */}
-          <AnimatePresence>
-            {mobileMenuOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: "-100%" }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: "-100%" }}
-                transition={{
-                  type: "tween",
-                  duration: 0.4,
-                  ease: [0.25, 1, 0.5, 1],
-                }}
-                className={`md:hidden fixed inset-0 z-40 flex flex-col pt-32 px-8 ${
-                  isDark ? "bg-[#0B0F19]" : "bg-[#FAFAF9]"
-                }`}
-              >
-                <div className="flex flex-col gap-8 text-3xl font-serif tracking-tight">
-                  {[
-                    { label: "About", href: "#about" },
-                    { label: "Lab Sandbox", href: "#sandbox" },
-                    { label: "Portfolio", href: "#portfolio" },
-                    { label: "Chronicle", href: "#chronicle" },
-                    { label: "Creative", href: "#creative" },
-                  ].map((link, i) => (
-                    <motion.a
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.2 + i * 0.05, duration: 0.4 }}
-                      key={link.label}
-                      href={link.href}
-                      className="hover:opacity-60 transition-opacity block border-b border-current/10 pb-4"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {link.label}
-                    </motion.a>
-                  ))}
-                </div>
-
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                  className="mt-auto mb-12 flex flex-col gap-6"
-                >
-                  <div className="text-[10px] font-mono uppercase tracking-widest opacity-50">
-                    Say Hello
-                  </div>
-                  <div className="flex flex-col gap-1 w-full">
-                    <a
-                      href="mailto:georgeokelloouma@gmail.com"
-                      className="text-sm font-mono tracking-wider flex items-center justify-between hover:opacity-70 transition-opacity border-current/10 pb-4 border-b w-full"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      <div className="flex items-center gap-3">
-                        <Mail className="w-5 h-5" />
-                        <span className="truncate">
-                          georgeokelloouma@gmail.com
-                        </span>
-                      </div>
-                    </a>
-                  </div>
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
         </motion.header>
+
+        {/* Mobile menu dropdown */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: "-100%" }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: "-100%" }}
+              transition={{
+                type: "tween",
+                duration: 0.4,
+                ease: [0.25, 1, 0.5, 1],
+              }}
+              className={`md:hidden fixed inset-0 z-40 flex flex-col pt-32 px-8 ${
+                isDark ? "bg-[#0B0F19]" : "bg-[#FAFAF9]"
+              }`}
+            >
+              <div className="flex flex-col gap-8 text-3xl font-serif tracking-tight">
+                {[
+                  { label: "About", href: "#about" },
+                  { label: "Lab Sandbox", href: "#sandbox" },
+                  { label: "Portfolio", href: "#portfolio" },
+                  { label: "Chronicle", href: "#chronicle" },
+                  { label: "Creative", href: "#creative" },
+                ].map((link, i) => (
+                  <motion.a
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 + i * 0.05, duration: 0.4 }}
+                    key={link.label}
+                    href={link.href}
+                    className="hover:opacity-60 transition-opacity block border-b border-current/10 pb-4"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </motion.a>
+                ))}
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="mt-auto mb-12 flex flex-col gap-6"
+              >
+                <div className="text-[10px] font-mono uppercase tracking-widest opacity-50">
+                  Say Hello
+                </div>
+                <div className="flex flex-col gap-1 w-full">
+                  <a
+                    href="mailto:georgeokelloouma@gmail.com"
+                    className="text-sm font-mono tracking-wider flex items-center justify-between hover:opacity-70 transition-opacity border-current/10 pb-4 border-b w-full"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <div className="flex items-center gap-3">
+                      <Mail className="w-5 h-5" />
+                      <span className="truncate">
+                        georgeokelloouma@gmail.com
+                      </span>
+                    </div>
+                  </a>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* 2. DYNAMIC HERO SECTION */}
         <section

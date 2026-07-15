@@ -323,7 +323,7 @@ export default function PublicationsList({ theme }: PublicationsListProps) {
                   Empirical Research & Core Implementations
                 </h4>
                 <a
-                  href="https://online.anyflip.com/ckosy/cscn/mobile/index.html"
+                  href="https://heyzine.com/flip-book/c33e22041c.html"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`inline-flex items-center gap-2 px-3 py-1.5 rounded text-[10px] font-mono uppercase tracking-widest transition-all w-fit ${
