@@ -788,7 +788,52 @@ export default function App() {
                   <h4 className="text-[10px] uppercase tracking-widest mb-6 opacity-70 italic">
                     Core Academic Domain Clusters
                   </h4>
-                  <div className="flex flex-wrap gap-3">
+
+                  {/* Mobile Creative Marquee */}
+                  <div 
+                    className="md:hidden relative overflow-hidden flex flex-col gap-3 -mx-6 px-6 w-[calc(100%+3rem)]" 
+                    style={{ WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)", maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)" }}
+                  >
+                    <motion.div
+                      className="flex w-max gap-3"
+                      animate={{ x: ["0%", "-50%"] }}
+                      transition={{ ease: "linear", duration: 25, repeat: Infinity }}
+                    >
+                      {[...personalInfo.researchInterests.filter((_, i) => i % 2 === 0), ...personalInfo.researchInterests.filter((_, i) => i % 2 === 0)].map((interest, idx) => (
+                        <span
+                          key={`r1-${idx}`}
+                          className={`px-5 py-2 border rounded-full text-[10px] uppercase tracking-widest whitespace-nowrap ${
+                            isDark
+                              ? "border-white/20 bg-black/20 text-white/90"
+                              : "border-black/20 bg-white/40 text-black/90"
+                          }`}
+                        >
+                          {interest}
+                        </span>
+                      ))}
+                    </motion.div>
+                    <motion.div
+                      className="flex w-max gap-3"
+                      animate={{ x: ["-50%", "0%"] }}
+                      transition={{ ease: "linear", duration: 30, repeat: Infinity }}
+                    >
+                      {[...personalInfo.researchInterests.filter((_, i) => i % 2 !== 0), ...personalInfo.researchInterests.filter((_, i) => i % 2 !== 0)].map((interest, idx) => (
+                        <span
+                          key={`r2-${idx}`}
+                          className={`px-5 py-2 border rounded-full text-[10px] uppercase tracking-widest whitespace-nowrap ${
+                            isDark
+                              ? "border-orange-500/30 bg-orange-500/10 text-orange-200"
+                              : "border-orange-600/30 bg-orange-600/10 text-orange-800"
+                          }`}
+                        >
+                          {interest}
+                        </span>
+                      ))}
+                    </motion.div>
+                  </div>
+
+                  {/* Desktop Standard Wrap */}
+                  <div className="hidden md:flex flex-wrap gap-3">
                     {personalInfo.researchInterests.map((interest, idx) => (
                       <motion.span
                         key={idx}
