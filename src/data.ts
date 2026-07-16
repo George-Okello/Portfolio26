@@ -303,7 +303,7 @@ export const experiences: Experience[] = [
     id: "exp-strath-ds",
     role: "Data Science Fellow",
     company: "Strathmore University",
-    location: "Machakos, Kenya",
+    location: "Nairobi, Kenya",
     period: "Sep 2022 - Feb 2023",
     bullets: [
       "Conducted statistical analyses and developed complex visualizations to interpret institutional research outcomes.",
@@ -317,7 +317,7 @@ export const experiences: Experience[] = [
     id: "exp-strath-inst",
     role: "Instructor",
     company: "Strathmore University",
-    location: "Machakos, Kenya",
+    location: "Nairobi, Kenya",
     period: "Feb 2023 - Feb 2025",
     bullets: [
       "Delivered technical lectures and hands-on laboratory workshops for the Data Science Certificate program.",
@@ -331,7 +331,7 @@ export const experiences: Experience[] = [
     id: "exp-strath-bi",
     role: "Business Intelligence Analyst (ML/AI Engineer)",
     company: "Strathmore University",
-    location: "Machakos, Kenya",
+    location: "Nairobi, Kenya",
     period: "Feb 2023 - Feb 2025",
     bullets: [
       "Built and deployed scalable data pipelines extracting, transforming, and loading diverse corporate data streams.",
@@ -345,7 +345,7 @@ export const experiences: Experience[] = [
     id: "exp-re-pca",
     role: "People and Culture Analyst",
     company: "The ResourceEdge",
-    location: "Machakos, Kenya",
+    location: "Nairobi, Kenya",
     period: "Jan 2023 - Sep 2026",
     bullets: [
       "Assisted in Strategic Human Resource Management (SHRM) initiatives, applying people analytics models to team dynamics.",
@@ -387,7 +387,7 @@ export const experiences: Experience[] = [
     id: "exp-knls-vol",
     role: "Library Assistant (Volunteer)",
     company: "Kenya National Library Service (KNLS)",
-    location: "Machakos, Kenya",
+    location: "Nairobi, Kenya",
     period: "Jan 2020 - Mar 2020",
     bullets: [
       "Organized large library collections and updated digital catalog systems as part of an undergraduate community-service program.",
