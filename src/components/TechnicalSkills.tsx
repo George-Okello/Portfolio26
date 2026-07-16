@@ -176,7 +176,7 @@ export function TechnicalSkills({ isDark }: { isDark: boolean }) {
             >
               <h3 className="text-sm font-sans font-medium tracking-tight mb-4 flex items-center gap-2">
                 <Zap
-                  className={`w-3 h-3 transition-colors duration-300 ${isDark ? "opacity-50 group-hover:text-orange-400 group-hover:opacity-100" : "opacity-40 group-hover:text-orange-600 group-hover:opacity-100"}`}
+                  className={`w-3 h-3 transition-colors duration-300 ${isDark ? "opacity-50 group-hover:text-orange-400 group-active:text-orange-400 group-hover:opacity-100 group-active:opacity-100" : "opacity-40 group-hover:text-orange-600 group-active:text-orange-600 group-hover:opacity-100 group-active:opacity-100"}`}
                 />
                 {category.title}
               </h3>
@@ -186,8 +186,8 @@ export function TechnicalSkills({ isDark }: { isDark: boolean }) {
                     key={sIdx}
                     className={`px-2.5 py-1 text-[9px] uppercase tracking-widest border transition-colors duration-300 ${
                       isDark
-                        ? "border-white/20 text-white/70 group-hover:border-white/50 group-hover:text-white"
-                        : "border-black/20 text-black/70 group-hover:border-black/40 group-hover:text-black"
+                        ? "border-white/20 text-white/70 group-hover:border-white/50 group-active:border-white/50 group-hover:text-white group-active:text-white"
+                        : "border-black/20 text-black/70 group-hover:border-black/40 group-active:border-black/40 group-hover:text-black group-active:text-black"
                     }`}
                   >
                     {skill}

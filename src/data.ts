@@ -33,7 +33,7 @@ export const projects: Project[] = [
   {
     id: "thesis-msc-marl",
     title: "Computational Modelling of Social Hierarchies & Trust Dynamics",
-    category: "AI & ML",
+    category: "Network Science",
     summary:
       "I developed a computational model integrating hierarchy and trust dynamics in multi-agent reinforcement learning.",
     description:

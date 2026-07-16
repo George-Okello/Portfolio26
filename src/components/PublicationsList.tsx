@@ -45,6 +45,7 @@ function PublicationCard({
       initial={{ opacity: 0, y: 40, filter: "blur(8px)", scale: 0.96 }}
       whileInView={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
       whileHover={{ y: -8, rotateX: 2, rotateY: -2, scale: 1.02 }}
+                  whileTap={{ scale: 0.98, y: 0, rotateX: 0, rotateY: 0 }}
       viewport={{ once: false, amount: 0.2, margin: "-50px" }}
       transition={{
         duration: 0.7,
@@ -163,7 +164,7 @@ function NeuralNetworkButton({
       }`}
     >
       {/* Neural nodes and connecting lines effect */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-500 pointer-events-none">
         {/* Nodes */}
         <div
           className={`absolute top-2 left-2 w-1.5 h-1.5 rounded-full ${isDark ? "bg-emerald-400" : "bg-emerald-600"}`}
@@ -201,7 +202,7 @@ function NeuralNetworkButton({
 
       {/* Glow effect */}
       <div
-        className={`absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out ${
+        className={`absolute inset-0 translate-y-full group-hover:translate-y-0 group-active:translate-y-0 transition-transform duration-500 ease-out ${
           isDark ? "bg-emerald-500/10" : "bg-emerald-100/60"
         }`}
       />
@@ -209,7 +210,7 @@ function NeuralNetworkButton({
       <span className="relative flex items-center gap-3 z-10">
         <Database className="w-4 h-4" />
         Explore Kaggle Notebooks
-        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 group-active:translate-x-1 transition-transform" />
       </span>
     </a>
   );
@@ -345,6 +346,7 @@ export default function PublicationsList({ theme }: PublicationsListProps) {
                   initial={{ opacity: 0, x: -40, filter: "blur(8px)" }}
                   whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                   whileHover={{ y: -8, rotateX: 2, rotateY: -2, scale: 1.02 }}
+                  whileTap={{ scale: 0.98, y: 0, rotateX: 0, rotateY: 0 }}
                   viewport={{ once: false, amount: 0.1, margin: "-50px" }}
                   transition={{
                     duration: 0.8,

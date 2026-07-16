@@ -133,11 +133,11 @@ export default function AcademicTimeline({ theme }: AcademicTimelineProps) {
         >
           {/* Decorative background blur */}
           <div
-            className={`absolute -right-10 -top-10 w-40 h-40 rounded-full blur-3xl transition-opacity duration-500 ${isDark ? "bg-amber-500/10 group-hover:bg-amber-500/20" : "bg-amber-400/20 group-hover:bg-amber-400/30"}`}
+            className={`absolute -right-10 -top-10 w-40 h-40 rounded-full blur-3xl transition-opacity duration-500 ${isDark ? "bg-amber-500/10 group-hover:bg-amber-500/20 group-active:bg-amber-500/20" : "bg-amber-400/20 group-hover:bg-amber-400/30 group-active:bg-amber-400/30"}`}
           />
 
           {/* Creative Premium Award Seal */}
-          <div className="absolute top-0 right-0 p-6 pointer-events-none overflow-hidden opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+          <div className="absolute top-0 right-0 p-6 pointer-events-none overflow-hidden opacity-60 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-500">
             <div className="relative flex items-center justify-center w-24 h-24">
               <div
                 className={`absolute inset-0 rounded-full border-2 border-dashed ${isDark ? "border-amber-500/30" : "border-amber-400/60"} animate-[spin_12s_linear_infinite]`}
@@ -172,7 +172,7 @@ export default function AcademicTimeline({ theme }: AcademicTimelineProps) {
             </div>
 
             <h5
-              className={`text-xl md:text-2xl font-serif tracking-tight leading-snug mb-3 transition-colors duration-300 ${isDark ? "group-hover:text-amber-400" : "group-hover:text-amber-700"}`}
+              className={`text-xl md:text-2xl font-serif tracking-tight leading-snug mb-3 transition-colors duration-300 ${isDark ? "group-hover:text-amber-400 group-active:text-amber-400" : "group-hover:text-amber-700 group-active:text-amber-700"}`}
             >
               {item.title}
             </h5>

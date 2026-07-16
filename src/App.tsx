@@ -188,7 +188,7 @@ function NavLink({
       className="group relative py-2 opacity-60 hover:opacity-100 transition-opacity"
     >
       {children}
-      <span className="absolute bottom-0 left-0 w-full h-[1px] bg-current origin-right scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100 group-hover:origin-left" />
+      <span className="absolute bottom-0 left-0 w-full h-[1px] bg-current origin-right scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100 group-active:scale-x-100 group-hover:origin-left group-active:origin-left" />
     </a>
   );
 }
@@ -735,15 +735,15 @@ export default function App() {
                 <div className="relative aspect-[4/5] w-full overflow-hidden rounded shadow-2xl">
                   {/* Glitch Overlay Effect */}
                   <motion.div
-                    className={`absolute inset-0 mix-blend-overlay z-10 transition-opacity duration-700 ${isDark ? "bg-orange-500/20" : "bg-orange-600/10"} group-hover:opacity-0`}
+                    className={`absolute inset-0 mix-blend-overlay z-10 transition-opacity duration-700 ${isDark ? "bg-orange-500/20" : "bg-orange-600/10"} group-hover:opacity-0 group-active:opacity-0`}
                   />
                   <img
                     src={profileHeadshot}
                     alt={personalInfo.name}
-                    className="w-full h-full object-cover filter grayscale-[50%] contrast-125 opacity-90 transition-all duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:grayscale-0 group-hover:scale-[1.03] group-hover:contrast-100"
+                    className="w-full h-full object-cover filter grayscale-[50%] contrast-125 opacity-90 transition-all duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:grayscale-0 group-active:grayscale-0 group-hover:scale-[1.03] group-active:scale-[1.03] group-hover:contrast-100 group-active:contrast-100"
                   />
                   {/* Decorative Architectural Frame */}
-                  <div className={`absolute inset-4 border pointer-events-none transition-all duration-700 ${isDark ? 'border-white/20' : 'border-black/20'} translate-x-2 translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0 opacity-50 group-hover:opacity-100`} />
+                  <div className={`absolute inset-4 border pointer-events-none transition-all duration-700 ${isDark ? 'border-white/20' : 'border-black/20'} translate-x-2 translate-y-2 group-hover:translate-x-0 group-active:translate-x-0 group-hover:translate-y-0 group-active:translate-y-0 opacity-50 group-hover:opacity-100 group-active:opacity-100`} />
                   
                   {/* Scan Line Element */}
                   <motion.div 
@@ -802,6 +802,11 @@ export default function App() {
                           rotate: idx % 2 === 0 ? 1.5 : -1.5,
                           y: -3,
                         }}
+                        whileTap={{
+                          scale: 0.95,
+                          rotate: 0,
+                          y: 0,
+                        }}
                         transition={{
                           type: "spring",
                           stiffness: 400,
@@ -809,14 +814,15 @@ export default function App() {
                         }}
                         className={`relative overflow-hidden cursor-pointer px-5 py-2 border rounded-full text-[10px] uppercase tracking-widest transition-colors duration-300 ${
                           isDark
-                            ? "border-white/20 bg-black/20 backdrop-blur-md hover:border-orange-500/50 hover:bg-orange-500/30 hover:text-white"
-                            : "border-black/20 bg-white/40 backdrop-blur-md hover:border-orange-600/50 hover:bg-orange-600/20 hover:text-black"
+                            ? "border-white/20 bg-black/20 backdrop-blur-md hover:border-orange-500/50 active:border-orange-500/50 hover:bg-orange-500/30 active:bg-orange-500/30 hover:text-white active:text-white"
+                            : "border-black/20 bg-white/40 backdrop-blur-md hover:border-orange-600/50 active:border-orange-600/50 hover:bg-orange-600/20 active:bg-orange-600/20 hover:text-black active:text-black"
                         }`}
                       >
                         {/* Shine effect on hover */}
                         <motion.span
                           className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full"
                           whileHover={{ x: ["-100%", "200%"] }}
+                          whileTap={{ x: ["-100%", "200%"] }}
                           transition={{ duration: 0.8, ease: "easeInOut" }}
                         />
                         <span className="relative z-10">{interest}</span>
@@ -1040,10 +1046,10 @@ export default function App() {
               >
                 <div className="relative flex items-center justify-center">
                   <span className="absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-40 animate-ping"></span>
-                  <Mail className="w-5 h-5 opacity-80 group-hover:opacity-100 transition-opacity relative" />
+                  <Mail className="w-5 h-5 opacity-80 group-hover:opacity-100 group-active:opacity-100 transition-opacity relative" />
                 </div>
                 <span>georgeokelloouma@gmail.com</span>
-                <ArrowRight className="w-5 h-5 -translate-x-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                <ArrowRight className="w-5 h-5 -translate-x-1 opacity-0 group-hover:opacity-100 group-active:opacity-100 group-hover:translate-x-0 group-active:translate-x-0 transition-all" />
               </a>
             </div>
 
@@ -1064,8 +1070,8 @@ export default function App() {
                   className="group relative flex items-center gap-1.5 text-xs font-medium opacity-80 hover:opacity-100 transition-opacity py-1"
                 >
                   ArtStation
-                  <ExternalLink className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
-                  <span className="absolute bottom-0 left-0 w-full h-[1px] bg-current origin-right scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100 group-hover:origin-left" />
+                  <ExternalLink className="w-3 h-3 opacity-50 group-hover:opacity-100 group-active:opacity-100 transition-opacity" />
+                  <span className="absolute bottom-0 left-0 w-full h-[1px] bg-current origin-right scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100 group-active:scale-x-100 group-hover:origin-left group-active:origin-left" />
                 </a>
                 <div className="flex items-center gap-1.5 text-xs font-medium opacity-80">
                   <MapPin className="w-3 h-3 opacity-60" />
