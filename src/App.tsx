@@ -1097,7 +1097,7 @@ export default function App() {
               className={`h-px w-full ${isDark ? "bg-white/10" : "bg-black/10"} mb-8`}
             />
 
-            <footer className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <footer className="flex flex-col lg:flex-row justify-between items-center gap-6 text-center">
               <div className="text-[10px] uppercase tracking-[0.3em] opacity-60">
                 © {new Date().getFullYear()} George Okello
               </div>

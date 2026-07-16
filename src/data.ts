@@ -372,7 +372,7 @@ export const experiences: Experience[] = [
     id: "exp-psc-support",
     role: "System Support Intern",
     company: "Parliamentary Service Commission",
-    location: "Machakos, Kenya",
+    location: "Nairobi, Kenya",
     period: "Mar 2021 - Jul 2021",
     bullets: [
       "Oversaw technical operations for live broadcasts of parliamentary sessions on YouTube, ensuring stable streams and perfect audio quality.",
